@@ -1,0 +1,18 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: build/creativity-v5.aux
+The style file: apa.bst
+Illegal, another \bibstyle command---line 173 of file build/creativity-v5.aux
+ : \bibstyle
+ :          {apalike}
+I'm skipping whatever remains of this command
+Database file #1: C:/workspace/bibliojgr/bibliojgr.bib
+Repeated entry---line 13979 of file C:/workspace/bibliojgr/bibliojgr.bib
+ : @article{friston_history_2012
+ :                              ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for ""
+Warning--empty journal in van_de_cruys_putting_2011
+Warning--empty year in friston_free-energy_2010
+Warning--empty journal in friston_free-energy_2010
+Warning--empty year in ito_stochastic_1951
+Warning--empty year in shreve_stochastic_2010
+(There were 2 error messages)
