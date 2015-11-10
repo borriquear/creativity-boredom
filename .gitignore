@@ -1,4 +1,5 @@
 preprint/
+build/
 *.aux
 *.glo
 *.idx
