@@ -1,4 +1,4 @@
-\documentclass[11pt,twocolumn]{article}
+\documentclass[11pt, onecolumn]{article}
 \newcommand{\myreferences}{C:/workspace/gitgub/bibliography-jgr/bibliojgr}
 \usepackage{graphicx}
 \usepackage{subfigure}
@@ -7,7 +7,7 @@
 \usepackage{float}
 \usepackage[affil-it]{authblk}  %package for multiple authors
 %\graphicspath{{C:/workspace/figures/}}
-\graphicspath{{C:/workspace/github/figures/}}
+\graphicspath{{C:/workspace/figures/}}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern} % load a font with all the characters
@@ -22,8 +22,8 @@
 \affil[1]{The Hospital for Sick Children, Department of Neuroscience and Mental Health, University of Toronto, Bay St. 686, Toronto, (Canada)}
 \affil[2]{Koelliker Hospital, Department of Psychology, University of Turin, Via Verdi, 10, 10124 Turin (Italy)}
 
-\twocolumn[
-\begin{@twocolumnfalse}
+%\twocolumn[
+%\begin{@twocolumnfalse}
 \date{}
 \maketitle
 
@@ -33,8 +33,8 @@ We argue that there is a key ingredient that has been overlooked by researchers 
 %http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.115.108103
 %The model offers mechanistic insights into the emergence of information integration from a stochastic process, laying the foundation for understanding the origin of cognition.
 \end{abstract}
-\end{@twocolumnfalse}
-]
+%\end{@twocolumnfalse}
+%]
 \section{Introduction}
 %Boredom begets creativity. 
 %We can apply this fundamental model to our utility  problem. The subjective experience is here a function of the prediction error and time
@@ -42,7 +42,8 @@ The value in building artificial systems with optimal predictive power is beyond
 
 In biological systems, the idea that organisms organize sensory data into an internal model of the outside world, goes back to the early days of experimental psychology. In Helmholtz's \emph{Handbook of Physiological Optics} published in 1867, it is argued that the brain unconsciously adjusts itself to produce a coherent experience. According to this view, our perceptions of external objects are images or better said, symbols, that do not resemble the referenced objects.  Helmoltz's theory of perception as a process of probabilistic inference, in which sensory causes need to be inferred based upon changes of body states, has become a major tenet in computational neuroscience \citep{Dayan:2002} and other fields, including cybernetics \citep{ashby_introduction_2015}, cognitive psychology \citep{neisser_cognitive_2014} and machine learning \citep{neal_view_1998}.
 A recent incarnation of this approach is the Helmholtz's machine postulated by Dayan, Hinton and Zemel \citep{dayan_helmholtz_1995}, \citep{dayan_varieties_1996}. The brain is here conceptualized as a statistical inference engine whose function is to infer the causes of sensory input. 
-Under this scheme, the workings of the brain encode Bayesian principles. Due in part to the ever increasing computational power of computers, Bayesian approaches alike to the Helmholtz's machine have become the workhorse for studying how the nervous system operates in situations of uncertainty \citep{rao_predictive_1999}, \citep{knill_bayesian_2004}, \citep{friston_history_2012}. In a general sense, predictive coding is a Bayesian approach to brain function in which the brain is conceived as a device trained to do error correction. The main rationale is that the nervous system maintains internal probabilistic models informed by sensory information. The models are continuously updated in the light of their performance in predicting the upcoming suite of cues.
+Under this scheme, the workings of the brain encode Bayesian principles. Due in part to the ever increasing computational power of computers, Bayesian approaches alike to the Helmholtz's machine have become the workhorse for studying how the nervous system operates in situations of uncertainty \citep{rao_predictive_1999}, \citep{knill_bayesian_2004}, \citep{friston_history_2012}. 
+In a general sense, predictive coding is a Bayesian approach to brain function in which the brain is conceived as a device trained to do error correction. The main rationale is that the nervous system maintains internal probabilistic models informed by sensory information. The models are continuously updated in the light of their performance in predicting the upcoming suite of cues.
 %In essence, the Bayesian brain is a device trained to do error correction.
 % or as Ashby put it "The whole function of the brain is summed up in: error correction." \citep{clark_whatever_2013}
 
@@ -303,25 +304,23 @@ As a final note, boredom begets creativity is captured in equation \ref{eq:discf
 % the price/errr or predictive pleasure comes from montecarlo simulation A Monte Carlo simulation of a stochastic process is a procedure for sampling random
 %outcomes for the process. Data + r or \mu and \sigma, eq 14.10
 
-We run simulations of the model described in equation \ref{eq:discf23} in different scenarios, according to the different setting of the four parameters of the model, namely the initial prediction pleasure $(p_0)$, the boredom constant $(k)$, the expected rate of variation of the prediction pleasure $(\mu)$ and the variance of the prediction pleasure $(\sigma)$. The parameters prediction pleasure $(p_0)$ and boredom constant ($k$) can be seen as the priors. For example, all things being equal, an agent with a large ratio $k/p_0$ will likely have a predominantly boredom experience compared to another agent with a large $p_0/k$ which, on the contrary, will likely have a overall positive experience. In addition to the bias or predisposition of the agent to get bored, the expected rate of return $r$ represents the environment's complexity and is directly specified by parameters $(\mu)$ and $\sigma$ (equation \ref{eq:vpbpt3}). Remind that the parameter $\mu$ is the expected increase in the prediction pleasure at the maturity time and $\sigma$ is the variability.
+We run simulations of the model described in equation \ref{eq:discf23} in different scenarios, for different settings of the four parameters of the model, namely the initial prediction pleasure $(p_0)$, the boredom constant $(k)$, the expected rate of variation of the prediction pleasure $(\mu)$ and the variance of the prediction pleasure $(\sigma)$. The parameters prediction pleasure $(p_0)$ and boredom constant ($k$) can be seen as the priors. For example, all things being equal, an agent with a large ratio $k/p_0$ is likely to have a predominantly boredom experience compared to another agent with a large $p_0/k$ which, on the contrary, will likely have a overall positive experience. In addition to the bias or predisposition of the agent to get bored give by the ratio $k/p_0$, the expected rate of return $r$ represents the environment's complexity and is directly specified by parameters $(\mu)$ and $\sigma$ (equation \ref{eq:vpbpt3}). Remind that the parameter $\mu$ is the expected increase in the prediction pleasure and $\sigma$ is the variability.
 
-Figure \ref{fig:sims1} displays an agent's behavior under different agent-environment couplings, specified by the expected rate of return $\hat{r} = \mu - \frac{\sigma ^2}{2} $. A positive value of $\hat{r}$ denotes that it is likely that the agent will predict the world consistently. 
-%A low (negative) value of $r$, on the other hand, represents the opposite situation, namely, the agent finds its environment surprising or hard to predict. 
-Thus, for two agents, $a_1$ and $a_2$ with $\hat{r_1} = \mu_1 - \frac{\sigma_1 ^2}{2}$ and $\hat{r_2} = \mu_2 - \frac{\sigma_2 ^2}{2}$ and $\hat{r_1} > \hat{r_2}$ we expect that agent $a_1$ will have larger prediction pleasure than agent $a_2$, all things being equal. If $r_1 =r_2 = 0$ we are agnostic about the predictive power of both agents in their respective environments.
-
-To get a grasping of the workings of the model and to show that the model has the right general properties, we consider what happens when some of its parameters take extreme values in equation \ref{eq:discf2}.
-
-If prediction pleasure is very large compared to boredom, $p_t >> k$, $d_1$ will have a very large value and $d_2$ will be very little, therefore $N(d_1) \simeq 1$ and $N(d_2) \simeq 0$. In this situation, the overall experience will be positive. On the contrary, when the ratio between $p_t/k \sim 0$ the overall experience will be negative or dominated by boredom. 
+To get a grasping of the workings of the model and to show that the model has the right general properties, we consider what happens when some of its parameters take extreme values in equation \ref{eq:discd1d2}. If prediction pleasure is very large compared to boredom, $p_t/k >> 1$, $d_1$ will have a very large value and $d_2$ will be very little, therefore $N(d_1) \simeq 1$ and $N(d_2) \simeq 0$. In this situation, the overall experience will be positive. On the contrary, when the ratio between $p_t/k \sim 0$ the overall experience will be negative or dominated by boredom. 
 %When $ \mu = \frac{\sigma ^2}{2}$, $r=0$, if $p_t >> k$, $d_1 \to + \infty$, $N(d_1) =1$. If  $k >> p_t$, $d_2 \to + \infty$ and $N(d_2)=1$. 
 The rationale behind this is that if the world is very predictable, it is very likely that the agent will experience prediction pleasure or boredom depending on the own agent's bias specified by its preference to predict measured by the initial prediction pleasure $p_0$ or to get bored quantified with the $k$ constant.
 
-Figure \ref{fig:sims1} shows the simulation of the model when we are agnostic about the capacity  of the agent to capture the structure of the world. We codify this case with $ \mu = \frac{\sigma ^2}{2}$, $r=0$. When the agent does not have any particular predisposition of being in prediction or boredom mode $( p_0 = k )$ (figure \ref{fig:sims1} \emph{a}), prediction pleasure decays and boredom starts to rise after a sufficient amount of time. If the agent has a predisposition to  get bored $( k = 10p_0 )$ (figure \ref{fig:sims1} \emph{b}), prediction pleasure decays at much faster rate and boredom rises faster and earlier than in the previous case than in the previous case. When the agent has a predisposition to enjoy prediction as opposed to get bored $( p_0 = 10k )$ (figure \ref{fig:sims1} \emph{c}), both prediction pleasure and boredom remain stable over time.
+Figures \ref{fig:sims1} and \ref{fig:sims1} display simulations for different agent-environment couplings specified by the expected rate of return $\hat{r} = \mu - \frac{\sigma ^2}{2} $. A large positive value of $\hat{r}$ denotes that it is likely that the agent will predict the world consistently. 
+%A low (negative) value of $r$, on the other hand, represents the opposite situation, namely, the agent finds its environment surprising or hard to predict. 
+For example, for two agents, $a_1$ and $a_2$ with $\hat{r_1} = \mu_1 - \frac{\sigma_1 ^2}{2}$ and $\hat{r_2} = \mu_2 - \frac{\sigma_2 ^2}{2}$ and $\hat{r_1} > \hat{r_2}$ we expect that agent $a_1$ will have larger prediction pleasure than agent $a_2$, all things being equal. If $r_1 =r_2 = 0$ we are agnostic about the predictive power of both agents in their respective environments. 
+
+Figure \ref{fig:sims1} shows the simulation of the model when we are agnostic about the capacity  of the agent to capture the structure of the world i.e. $\mu  = \frac{\sigma ^2}{2}, \hat{r} =0$. When the agent does not show any particular predisposition of being in prediction or boredom mode $(p_0 = k)$ (figure \ref{fig:sims1} \emph{a}), prediction pleasure decays and boredom starts to rise after a sufficient amount of time has passed. If the agent has a predisposition to  get bored, e.g. $(k = 10p_0)$ (figure \ref{fig:sims1} \emph{b}), boredom rises faster and earlier than in the previous case. When the agent has a predisposition to predict as opposed to explore $( p_0 = 10k )$ (figure \ref{fig:sims1} \emph{c}), both prediction pleasure and boredom remain stable over time.
 
 Figure \ref{fig:sims2} shows the simulation of the model when we are optimistic about the capacity  of the agent to capture the structure of the world. We codify this case with $ \mu > \frac{\sigma ^2}{2}$, $r>0$. Thus, there  is a structure of the outside world and the agent is equipped with the perceptual, motoric and cognitive capacities to predict the sensorial input.
-When the agent does not have any particular predisposition of being in prediction or boredom mode $( p_0 = k )$ (figure \ref{fig:sims2} \emph{a}), prediction remains stable and so does boredom but at the end boredom will rise. Although the agent is predicting the world and having prediction pleasure, being consistently successful at predicting the world has the side effect of getting bored reducing the overall experience value. 
-If the agent has a predisposition to  get bored $( k = 10p_0 )$ (figure \ref{fig:sims2} \emph{b}), the overall experience value will be markedly negative at the end of the period. When the agent has a predisposition to enjoy prediction as opposed to get bored $( p_0 = 10k )$ (figure \ref{fig:sims1} \emph{c}), both prediction pleasure and boredom remain stable over time, keeping the the overall experience value at a constant positive value.
+When the agent does not have any particular predisposition of being in prediction or boredom mode $(p_0 = k)$ (figure \ref{fig:sims2} \emph{a}), prediction remains stable and so does boredom but at the end boredom will inevitably rise decreasing the subjective experience value. The rationale behind this is that even though the agent is predicting the world and having prediction pleasure, being consistently successful at predicting the world has the side effect of getting bored reducing the overall experience value. 
+If the agent has a predisposition to  get bored $(k = 10p_0)$ (figure \ref{fig:sims2} \emph{b}), the overall experience value will be markedly negative at the end of the period. When the agent has a predisposition to enjoy prediction as opposed to get bored $(p_0 = 10k)$ (figure \ref{fig:sims1} \emph{c}), both prediction pleasure and boredom remain stable over time, keeping the overall experience value at a constant positive value.
 
-In both figures ($r=0$ and $r>0$) the boredom component after an initial period of stability ends up raising reducing the overall experience value. Only when the agent has a clear predisposition to predict boredom stays stable and the experience value is explained with the prediction error (figures \ref{fig:sims1} and \ref{fig:sims2} \emph{c}). This result is in agreement with the intuition that agents  with a predisposition to like to predict will look for a quiet corner to predict optimally. On the other hand, agents that do not show any particular predisposition to predict, after a period of prediction allowing them to get acquainted  to the environment will inevitably start getting bored, diminishing the overall experience value, triggering a risk prone behavior e.g.,look for the way out of the dark room, to counter decrease in experience value motivated by the increase in boredom. 
+In both figures, figure \ref{fig:sims1} ($r=0$) and figure \ref{fig:sims2} ($r>0$)   the boredom component inevitably ends up raising reducing the overall experience value. Only when the agent has a clear predisposition to predict $(p_0/k >> 1)$, boredom stays stable and the experience value is explained with the prediction error alone (figures \ref{fig:sims1} and \ref{fig:sims2}, \emph{c}). This result is in agreement with the intuition that agents with a predisposition to predict will look for a quiet corner to reduce the surprise over its states and predict optimally. On the other hand, agents that do not show any particular predisposition to predict or to explore, after a period of experiencing prediction pleasure that allows them to get acquainted to the environment, after a while will inevitably start getting bored, diminishing the overall experience value and triggering risk prone behavior (e.g. look for the way out of the dark room) to counter the decrease in experience value motivated by the increase in boredom.
 
 %figure here, r == 0
 \begin{figure}[H]
@@ -349,73 +348,44 @@ In both figures ($r=0$ and $r>0$) the boredom component after an initial period 
     }
     \hfill
     \subfigure[\label{subfig-2:dummy}]{%
-      \includegraphics[width=0.5\textwidth,height=0.515\textheight,keepaspectratio]{r=02k=10s-inv.png}
+      \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{r=02k=10s-inv.png}
     }
     \hfill
     \subfigure[\label{subfig-3:dummy}]{%
-      \includegraphics[width=0.5\textwidth,height=0.515\textheight,keepaspectratio]{r=02s=10k-inv.png}
+      \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{r=02s=10k-inv.png}
     }
     \caption{The figure shows the evolution of the probabilities $N(d_1), N(d_2)$ the prediction pleasure and the boredom when the parameters in equation \ref{eq:discf23} are $ \mu > \frac{\sigma ^2}{2}$, $r>0$. Under this parametrization we are optimistic about the capacity of the agent to predict the external world, that is to say, we expect that the agent will be able to predict at least part of its sensorial input. Figure \emph{a} there is no initial bias, $p_0 = k$, Figure \emph{b} there is a bias that favoured boredom versus prediction and in Figure \emph{c} the bias is versus  prediction against boredom. 
      }
     \label{fig:sims2}
 \end{figure}
+
+
 \section{Discussion}
 \label{se:dis}
-%We have described a utility model for subjective experience.
-%Experienced utility goes back to Bentham, Edgeworth revival with Kahneman distinction between decision and experience utility. For Kahneman the total utility of an episode is the sum of its instants.
 
-In the predictive coding framework the brain tries to infer the causes of the body sensations based on a generative model of the world. This inverse problem is famously formalized by the Bayes rule. When incoming sensorial data fully agree with beliefs, an exhaustion of prediction occurs in which prediction error signal becomes stationary. Thus, the system reaches an equilibrium characterized by sampling data from the environment in such a way that the system is never surprised. The idea behind this model is that somewhere in the brain there is a decision signal that encodes hypothesis about the sensorial information that is being processed. 
+In the predictive coding framework the brain tries to infer the causes of the body sensations based on a generative model of the world. This inverse problem is famously formalized by the Bayes rule. The idea behind this model is that somewhere in the brain there is a decision signal that encodes hypothesis about the sensorial information that is being processed. When incoming sensorial data fully agree with beliefs, prediction error signal becomes stationary. Thus, the system reaches an equilibrium characterized by sampling data from the environment in such a way that the system is never surprised.  
 
-Figure \ref{fig:reactiontime} schematically shows the process of decision making implemented as reaction time signal for two different hypothesis. Each signal is defined by two parameters: the prior probability of he hypothesis and the latency time which can be model as the time derivative or growth rate at which the signal reaches the threshold. 
-%For the sake of the argument we can assume that we have a set of signals encoding the respective set of hypothesis. 
-%All signals starts at a very low level and when the stimulus is presented the signals start to rise at different pace until one or more of them reach the threshold that triggers the initiation of the response. %If the reaction r is r then the reaction time is $t = r{-1}$.
-%Additional parameters can be incorporated like the procrastination or the initial delay between the stimulus is sensed and the signal reaction. 
-The motivation in using this toy model is twofold. First, to provide a comprehensible account of surprisal minimization in a simple but explanatory powerful scenario consisting of only two parameters and second, indicate the limitations of surprisal minimization according to the utility model defined in section \ref{se:methods}.
+%The mathematical model proposed  in section \ref{se:methods} extends predictive coding into an unifying and coherent  approach. 
+From an evolutionary perspective, subjective experience exists to facilitate the learning of conditions responsible for homeostatic imbalances and of their corrective responses. There is an evolutionary advantage in doing surprising actions. For example, in a prey-predator game, both the prey and the predator will have a better change to succeed if they behave surprisingly rather than in predictable ways.   
+%Our model is in agreement with the well established fact that the brain deliberately randomizes reaction times bin order to have action variability \citep{carpenter_neural_1999}. 
+Furthermore, if agents always react in the same way to common stimuli e.g., staying if the noise is caused by the breeze (figure \ref{fig:lkhratio}), life will be boring and there would be no incentive to explore and discover. 
 
+A recurring critic of the free energy principle is that agents that minimize surprise as the principle mandates, could not possibly engage in explorative  behavior or creativity. In a recent update of the theory \footnote{In truth, the relative entropy or KL distance between the recognition distribution and the generative distribution is included in the seminal paper by Dayan, Hinton and Zemel 
+of the Helmoltz machine \citep{dayan_helmholtz_1995} which is also used by Friston and collaborators in the free energy principle. The Kullback-Leibler divergence which is always non negative is an upper
+bound of the the quantity that needs to be minimized in the model, the free energy}, the utility function that would explain agent decision making is defined as the relative entropy or Kullback-Leibler divergence between the probability distributions of likely states and desired states \citep{schwartenbeck_exploration_2013}. Both distributions are conditional, the former on empirical priors and the last on priors that represent desired states which are fixed and do not depend on sensory input. In this schema agents will always try to visit the desired states in order to minimize the distance between the desired and likely outcomes. In this account, agents will visit the desired states and when the distribution of the desired states is flat, that is, they are all equally desirable, the agent would explore new states since the decision making is unconstrained according to the utility  function.
 
-%Example maximization likelihood
-Let us see with an example how we can infer the hidden causes of the sensory input using likelihood maximization. A camper is sitting in front of a bonfire in the woods. It is a chilly and windy day. He hears a noise whose source can not recognize. The camper has two hypothesis to explain the noise, i) the noise is just the breeze moving the leaves or ii) the noise is caused by a black bear approaching the camp. Let A be the breeze signal and B the bear signal. Initially, since there are only a few bears in those woods and the it is particularly windy, the camper gives more weight to the hypothesis A -the noise is caused by the wind- than to hypothesis B -it is a bear. Formally, the ratio of the logarithm of the likelihood that evidence E is caused by A versus B is bigger than 1. 
+However, the two major limitations are still standing. First, the problem of arbitrariness in assigning prior probabilities is 
+never considered. Jaynes' \citep{Jaynes68priorprobabilities} principle of maximum entropy was conceived to specifically addressed the subjectivity problem in assigning prior probabilities. In \citep{schwartenbeck_exploration_2013} this principle is used to convey the idea that the agents that minimize surprise can also have explorative behavior, under the assumption that the desired outomes have maximum entropy i.e., the agent does not have any specific goal or preference. However, in the free energy principle, the priors are fixed and do not depend on the sensorial information. This is problematic because an agent with a flat distribution of prior desired states will have an entirely unpredictable behavior, which is a suboptimal strategy of survival in a world containing a big deal of predictable patterns. Second, if the agent favours specific goal-states, for example, prefers wide open spaces versus dark and narrow habitats or vice versa, explorative behavior will never occur. Thus, free energy minimization can explain exploration (no goal-state is preferred) and exploitation (goal states are preferred over others) separately but not the interplay between exploration and exploitation and how the agent can switch between one mode or the other.
 
-\begin{equation}
- \frac{\log p(E|A)}{\log p(E|B)} > 1 
-\label{eq:lkhratio}
-\end{equation}
+To illustrate this point let us see this with an example. A camper is sitting in front of a bonfire in the woods. It is a chilly and windy day. He hears a noise whose source can not recognize. The camper has two hypothesis to explain the noise, i) the noise is just the breeze moving the leaves or ii) the noise is caused by a Grizzly bear approaching the camp. Let A be the breeze signal and B the bear signal. Initially, since there are only a few bears in those woods and it is a particularly windy night, the camper gives more weight to the hypothesis A -the noise is caused by the wind- than to hypothesis B -it is a bear. Furthermore, the camper enjoys life in general and has a preference to avoid dangerous situations that could put his life at risk.  
 
-The course of action -stay if the breeze hypothesis is true or go if the bear hypothesis is true- is given by the likelihood, or as Figure \ref{fig:lkhratio} explains by the likelihood factored by the priors. This decision process can be seen as a handicapped race between the two hypothesis that compete to reach the necessary evidence that would trigger the action. The race is handicapped because the competing hypothesis start with different prior probabilities. For example, if there are very few bears in the area, the bear hypothesis will be rarely selected. 
-The discontinuous red line in  Figure \ref{fig:lkhratio} represents the threshold at the crossing point of the two distributions encoding the competing hypothesis. 
-However, if we take into account that being attacked by a bear is very rare, the prior probability of breeze is larger than that of a bear and the threshold can be shifted to the right as in Figure  \ref{fig:lkhratio} \emph{b} achieving more sensible responses to the properties external world.
-     
-%the problem with the model
-But let us imagine now that after a long uneventful period of time and the consequent boredom, the agent would like to take the risk of getting into the woods to explore the surrounding area. 
-How can surprisal minimization or the analogous likelihood maximization explain this new behavior? By readjust the prior and/or time derivative of the likelihood in such a way that the bear hypothesis reaches the threshold before the breeze hypothesis the agent would leave the place to escape from the upcoming danger, rather than staying. But this is not the same as exploring. 
-The likelihood maximization based decision process depicted in Figure \ref{fig:lkhratio} is unable to explain why the organism would engage in such a behavior. Even if we are as indulgent with the use of words as to equate exploring with escaping the model would not tell us why the organism reaches to the observed behavior. Crucially, the evaluation of the priors is outside the model. 
-%YOSOLO FIGURA hypothesis crossing
-The crux of the matter is to realize that likelihood maximization in all its forms and denominations i.e., surprise minimization or free energy minimization, can not explain behaviors that are not dedicated to minimize prediction error.
+The course of action -stay or go- is given by the divergence between the likely outcomes (the noise is caused by the breeze) and the desired outcomes (it is preferable to be caress by the breeze than eaten by a Grizzly bear). But let us imagine now that after a long uneventful period of time and the consequent boredom, the agent would like to take the risk of getting into the woods to explore the surrounding area. 
+How can surprisal minimization or the analogous likelihood maximization explain this new behavior? It would need to be possible to readjust the priors (goal-states) in such a way that the agent responds differently to the same stimulus, for example, leaving the place to explore, rather than staying as the the free energy principle mandates. 
 
-The mathematical model proposed  in section \ref{se:methods} extends predictive coding into an unifying and coherent  approach. From an evolutionary perspective, subjective experience exists to facilitate learning of conditions responsible for homeostatic imbalances and of their corrective responses.  
-Our model is in agreement with the well established fact that the brain deliberately randomizes reaction times bin order to have action variability \citep{carpenter_neural_1999}. If we always react in the same way to common stimuli e.g., staying if the noise is caused by the breeze, life will be boring and there would be no incentive to explore, discover and wander. 
-By randomizing the rate of rise of the signal towards the threshold it is possible to randomize  choice or increasing its variability. There is an evolutionary advantage in doing surprising actions. For example, in a prey-predator game, both prey and the predator, will have a better change to succeed if they behave surprisingly rather than in predictable ways. 
-
-The tension between adaptation and satiation is taken care by the homeostatic control mechanism that keeps the organism's internal conditions within admissible bounds. 
-The exhaustion of prediction disrupts the homeostatic balance, boredom leads to variety seeking to restore the homeostatic balance. This idea exists in popular parlance in the idiom "die of success", minimizing prediction error would make the system to seek for facile environments to predict, neglecting exploration and over valuing risk, which would make the system maladapted for prospering and survive in more complex or realistic environments. 
-Our model provides a overarching principle for behavioral modeling, extending the predictive coding framework to a more explanatory framework. Biological systems do not just minimize free energy, rather free energy or surprise is one dependent variable, the other is boredom, and the interplay between both pleasure (prediction) and pain (boredom) defines the independent variable, subjective experience, which is the quantity that systems, all things being equal, maximize.  
-
-%YOSOLO future works
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-	%/Users/jagomez/anaconda/lib/python2.7
-    \subfigure[\label{subfig-1:dummy}]{%
-      \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{reactiontime.png}
-    }
-    %\hfill
-    %\subfigure[\label{subfig-2:dummy}]{%
-    %  \includegraphics[width=0.5\textwidth,height=0.515\textheight,keepaspectratio]{reactiontime.png}
-%    }
-    \caption{Figure \emph{a} shows the handicapped race between the two hypothesis in a single trial. When we are certain that the generative model has created the observed data, the action is taken. There are two hypothesis -the sound is produced by the breeze or by a bear- each with its corresponding action -stay or go. The competition between the two hypothesis is handicapped in the sense that the likelihood is weighted by the prior. Thus, for the bear hypothesis to reach the threshold before the breeze hypothesis does it, it would require that the likelihood of the former grows at a faster rate. %Figure \emph{b} shows the handicapped race between the two hypothesis over time in n different trials. 
-    %Figure (b) indicates that the agent has been remarkably good at inferring the hidden causes of its sensorial information, and one time after the other the noise that came from the bushes was caused by the wind.  
-     }
-    \label{fig:reactiontime}
-\end{figure}
+More importantly, in the previous example, when the camper decides to explore the woods after being consistently good at predicting the sensory input, it does so because the pleasure of prediction is being overweight by the pain of boredom, resulting in a negative subjective experience that needs to rebalance by seeking new states that may bring boredom to lower levels. The exhaustion of prediction disrupts the homeostatic balance, boredom leads to variety seeking to restore the homeostatic balance. This idea exists in popular parlance in the idiom "die of success", minimizing prediction error would make the system to seek for facile environments to predict, neglecting exploration and over valuing risk, which would make the system maladapted for prospering and survive in more complex or realistic environments. 
+Our model provides a overarching principle for behavioral modeling, extending the predictive coding framework to a more explanatory framework. The homeostatic control mechanism that keeps the organism's internal conditions within admissible bounds reflects the interplay between pleasure associated with prediction and pain, 
+produced by boredom.
+Biological systems do not just minimize free energy, rather free energy or surprise is one dependent variable, the other is boredom, and the interplay between both pleasure (prediction) and pain (boredom) defines the independent variable, subjective experience, which is the quantity that systems, all things being equal, maximize.  
 
 %Figure
 %/Users/jagomez/anaconda/lib/python2.7 
@@ -432,8 +402,8 @@ Our model provides a overarching principle for behavioral modeling, extending th
 \end{figure}
 
 %\bibliography{\myreferences}
-\bibliographystyle{apa}
-\bibliography{C:/workspace/bibliojgr/bibliojgr}
+\bibliographystyle{abbrvnat}
+\bibliography{C:/workspace/gitgub/bibliography-jgr/bibliojgr}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -529,8 +499,6 @@ Based on the variable $d_2$, which according to the Black-Scholes-Merton model i
  \end{equation} 
 One major difference between our model and the option pricing model is that the subjective experience is always what it is, while the option is only executed if $P>B$. It follows that $d_1$ and $d_2$ needs to be accordingly changed (Equation \ref{eq:discf2}).
 
-
-\bibliographystyle{apalike}
 \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -565,150 +533,3 @@ One major difference between our model and the option pricing model is that the 
 
 %\subsection{The LATER model: decision signal}
 %\label{sse:later}
-
-%Lecture 3-1-1. Rao
-Decide between choices given the output of a single neuron or also having an assemly of neurons that may be having a vote over a number of choices about what the stimulus is. The question is how the brain decodes in real time to try to reconstruct the entire time variant complex input. 
-Decoding is like a policy , if we see some value r (response) we can map r to the stimulus, from $p(r)$ to $p(r|stim)$, where $p(r|stim)$ is the likelihood, how likely is that we observe our data, the response r, given the cause of the stimulus, whenever we choose a cause (decision, hypothesis) we want that the likelihood ratio be bigger than one $\frac{p(r|s1)}{p(r|s2}$, the likelihood ratio is the most efficient statistic in that it has the most power for a given size  
-Carpenter \citep{carpenter_neural_1999}, using the reaction time as the response signal in saccadic movements, built on this idea to demonstrate that the time required to react voluntarily to a stimulus is far longer than the time required for nerve conduction and synaptic delay \cite{carpenter_neural_1999}, that is to say, we take more time to respond to sensory stimuli that is altogether reasonable on purely physiological grounds. 
-The brain procastinates, that is, the saccadic response could be made sooner but it is delayed. Visual stimulation can trigger electrical activity in the collicus (a structure that translates visual information -the location of the stimulus- into motoric commands that go down the brainstem) in only 40ms and conversely the stimulation of the saccade can generate a saccade in only 20ms. The saccadic movement would strictly require 20 ms which is the time that the collicus needs to know where the location of the stimulus, but in actual fact, it may take up to 200 ms between the presentation of the target and the start of the saccade. Thus, procastination is the extra time required for higher brain structures to inhibit the collicus and filter out what to look at, otherwise we would be doing saccadic movements to all targets indiscriminately, irrespective of whether they are potential threats, food etc. 
-%This is so because the collicus is informed about the target's position but does not about other relevant proprties of the stimuls such as color, shape etc.
-
-Reaction time is really about about decision process and not pure signal propagation. 
-Another interesting aspect of reaction time is variability, latency distribution has a mean of $200 ms$, and in $5\%$ of cases the latency is less than $150 ms$ or more than $300 ms$. These outliers may be responses that escape form the blanket of inhibition. 
-The brain deliberately randomizes reaction times because this is the way to have action variability. If we always react in the same manner to the common stimuli, life will be boring and we would never discover anything new since we would not have any incentive to explore or wander. 
-By randomizing the rate of rise of the signal towards the threshold we are randomizing choice or increasing its variability. Thus, there is an evolutionary advantage in doing surprising actions. For example, in a prey-predator game, both prey and the predator, will have a better change to succeed if they behave surprisingly rather than in predictable ways. 
-
-
-%\subsection{Predictive Coding Barlow}
-\cite{barlow_possible_1961}
-A close examination of wings, or the principles of flight will be probably unrewarding to understand how birds flight, we may be in a similar position with respect with the sensorial side of the cns.
-We need to localize the structures first, if one does not one will get lost in a mass of irrelevant facts.
-3 hypothesis:
-\begin{enumerate}
-\item sensory relays are for detecting in the incoming mesages certain passwords that have a particular significance for the animal
-\item they are filters whose "pass characteristics" can bbe conroled ina ccordance wit the requirements of other parts of the ns.
-\item the encode sensory messages , detecting signal of high relative entropy from highly redundant sensory input
-\end{enumerate} 
-Hypothesis 1 and 2 are simple to understand, 3 requires more thought and some mathematical background.
-Relays just pass information without transforming it in any way.
-1. the passworf h. 
-
-Hyp 3. "economy of thought" reduce the redundancy of our internal representations of the outer world
-
-Sensory relays encode sensory messages so that their redundancy is reduced but comparatively little information is lost.
-
-If $P_m$ is the probability of the message m from the ensemble of mutually exclusive and statistically independent messages whose frequency distribution is known, then the information attributed, or the surprisal after having receive the m is $M_m = -log P_m$.
-It follows that the average information for all messages is $H = -\sum_{m}P_mlogP_m$ 
-
-
-
-The review of behavioural models covers work in visual processing, sensory integration, sensorimotor integration, and collective decision making. The review of brain models covers a range of spatial scales from synapses to neurons and population codes, but with an emphasis on models of cortical hierarchie
-
-The drift $r$ is here $f'(\epsilon)$, that is the derivative of the error function $f: R \to R$
-The price is the premium of the call contract and both the buyer and the seller must agree on this.
-%https://en.wikipedia.org/wiki/Call_option
-A company issues an option for the right to buy their stock. An investor buys this option and hopes the stock goes higher so their option will increase in value. The buyer (call) expects the price of the underlying asset will go up (bullish) and conversely the seller or writer is bearish, that is, it expects the price to go down. 
-Theoretical option price = (current price + theoretical time/volatility premium) – strike price.
-
- The pay-off, i.e. the value of the call option at expiry, is
- max$\{S_T - K \ge 0\}$
- %option values vary with the value of the underlying instrument over time. The price of the call contract must reflect the "likelihood" or chance of the call finishing in-the-money. The call contract price generally will be higher when the contract has more time to expire (except in cases when a significant dividend is present) and when the underlying financial instrument shows more volatility. Determining this value is one of the central functions of financial mathematics. The most common method used is the Black–Scholes formula. Importantly, the Black-Scholes formula provides an estimate of the price of European-style options.
- 
- The higher the price (predictive pleasure), the more expensive the call option is (total value). The higher $f(\epsilon)$ or the low $\epsilon$ the higher the predictive pleasure or the pleasure tout court. Thus, price of the asset ($f(\epsilon$) goes with price of the call option (value or total pleasure).
- $f(\epsilon) \to V$
- 
-The higher the volatility $\sigma$, the more expensive the call option is. $\sigma \to V$
- 
-As time goes by, options become cheaper and cheaper.  This is because with time there is less variability and the price goes down. The time parameter is not to be used in perception because there is not a maturity. 
- $t \to V{-1}$.
-
-\begin{equation}
-    V(\epsilon,  \lambda) =  P(\epsilon) - B(\epsilon, \lambda)
-\label{eq:vpb}
-\end{equation}
-
-%\lambda (e^{f{'}(\epsilon)}f^{-1}(\epsilon))
-
-The first term is the present value of what one expects to experience (pleasure) in terms of predictive pleasure and the second term is the present value of what one expects to what one expects to experience (pain) due to boredom. To maximize V we need to solve for $\epsilon$ and $\lambda$, where the predictive term P is the inverse of the prediction error and the boredom term B is function of the decay of the prediction error, $\epsilon$ and the individual tolerance for boredom, $\lambda$ (Equation \ref{eq:boredom}).
-
-Translating the BSM formula for our purposes we have that the second term becomes
-\begin{equation}
-Ke^{f_t^{'}(\epsilon)}N(d_2)
-\end{equation}
-where $Ke^{f_t^{'}(\epsilon)}$ is the price of boredom seen today to be paid in time t or the anticipation of boredom in time t, factored by the probability $N(d_2)$ (for $\epsilon$ large enough $Ke^{f_t^{'}(\epsilon)}=K$ one can get bored as much as its own parameter $K$ dictates).
-The first term $S_t N(d_1)$ where $S_t =  \frac{1}{\epsilon + 1}$ the larger the prediction error $\epsilon$ the smaller the prediction value $S_t$ or vice versa the better one (small $\epsilon$) is as a predictor more predictive pleasure is experienced and $N(d_1)$ is a probability factor that weights the predictive value in the future in a stationary and ergodic world.   
-
-%\subsection*{Utility function}
-Baucells studies satiation and habit formation impact on experienced utility.
-the tension between satiation and adaptation leads to variety seeking and lower consumption today increases the desire for future consumption, abstinence leads to craving.
-%\subsection*{Misc}
-To calculate $E(P_{t})$ we need to have first a model of the  prediction pleasure  process P. We build on the literature of financial modeling, to characterize the stochastic process P. We assume that the expected percentage in prediction pleasure is constant, that is,  the expected drift given by the parameter $r$ divided by
-the actual prediction pleasure $P$. Thus, if $P$ is the value of the prediction pleasure at time t, then the expected drift rate
-in P is $rP$ for some constant parameter $r$, in this case the prediction rate given by the external world's entropy.
-It follows that for a short period of time $\delta T$ the expected increase in the prediction pleasure P is $rP \delta T$. 
-Drawing from the financial literature we can model the process P as a geometric Brownian
-motion.
-\begin{equation}
-\begin{split}
-   & \Delta P  = r P \Delta T + \sigma P \xi \sqrt{\delta T}\\
-   & \frac{\Delta P}{P}   = r \Delta T + \sigma P \xi\sqrt{\Delta T}
-\end{split}
-\label{eq:pprocess}
-\end{equation}
-The variable $\delta P$ is the change in the prediction pleasure $P$ in a small period of time $\delta T$. The parameter $r$ is
-the expected percentage change per unit of time for the prediction pleasure. The variable $\xi$ is necessary to characterize the stochastic process $\delta P$ and is assumed to follow a Wiener process ($\xi \sim N(0,1)$) . The parameter $\sigma$ is the volatility of the prediction pleasure. Both parameters,$r$ and $\sigma$ are assumed to be constant. 
-The model in equation \ref{eq:pprocess} describes the 
- prediction pleasure process in a real world with a structure given by the prediction rate $r$. This same model is widely used to model stock price behavior as geometric Brownian motion \citep{duffie_dynamic_2001}.  
-
-
-
- %This randomness observed in the reaction time goes against the notion that reaction time is driven by conductiuon and synaptic delay, there is obviously more at stake here. This variation (the distribution of latency time for ) can be parametrized (modeled) as a Gaussian. More explicitely the reciprocal or inverse of the response time or latency obeys a Gaussian distribution.
-%This point is enough to disprove the thesis made by Friston \cite{friston_anatomy_2013}
-%uses the term handicaped race of hypothesis to model the process by which hypothesis about stimuli in the external world are tested. 
-%about incomplete information about stimuli in the external world. 
-%   Assuming that we are able to observe the output (noise) from the unknown source for a period of time T, we can use this information to set up the threshold value assuming that in every time we are getting an approximately independent sample, that is, we accumulate evidence of one hypothesis over the other.
-%Figure \ref{fig:sims3} shows the simulation of the model when we are pesimistic about the capacity  of the agent to capture the structure of the world. We codify this case with $ \mu < \frac{\sigma ^2}{2}$, $r<0$. Thus, whether the outside world has no much structure or the agent is ill-equipped to cope with it.
-%When the agent does not have any particular predisposition of being in prediction or boredom mode $( p_0 = k )$ (figure \ref{fig:sims3} \small{a}), prediction pleasure starts decaying at approximately the same time as boredom rises. 
-%If the agent has a predisposition to  get bored $( k = 10p_0 )$ (figure \ref{fig:sims2} \small{b}), the overall experience value will be markedly negative at the end of the period. When the agent has a predisposition to enjoy prediction as opposed to get bored $( p_0 = 10k )$ (figure \ref{fig:sims1} \small{c}), both prediction pleasure and boredom remain stable over time, keeping the the overall experience value at a constant positive value.
-
-
-%The probability of being in boredom mode decreases by a factor $\sigma ^2$ and the probability of being in prediction mode increases by the same factor. Thus, the variability in the sensorial information correlates positively with prediction pleasure and negatively with boredom.
-
-
-
-
-
-   
-
-%figure here, r < 0
-%\begin{figure}[H]
-	%/Users/jagomez/anaconda/lib/python2.7
-%    \subfigure[\label{subfig-1:dummy}]{%
-%      \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{r=-001s=k-inv.png}
-%    }
-%    \hfill
-%    \subfigure[\label{subfig-2:dummy}]{%
-%      \includegraphics[width=0.5\textwidth,height=0.515\textheight,keepaspectratio]{r=-001k=10s-inv.png}
-%    }
-%    \hfill
-%    \subfigure[\label{subfig-3:dummy}]{%
-%      \includegraphics[width=0.5\textwidth,height=0.515\textheight,keepaspectratio]{r=-001s=10k-inv.png}
-%    }
-%    \caption{r < 0. Figure a). Figure b) bias favoured boredom .Figure c) bias favoured prediction pleasure    
-%     }
-%    \label{fig:sims3}
-%\end{figure}
-
-%The larger the variability $\sigma$ is the smaller is this probability factor $p(x > d_2)$. 
-%The more variability the less bored one is, also the more time is left is in principle more likely to see something surprising. If $\sigma$ and $t$ are large enough so that $d_1 = d_2$, then $N(d_2) \sim 0$ and the Boredom factor is closed to 0, the intuition behind this is that in a world with high variability one cannot easily get bored.  
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%% OTHER Approaches %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% ii) Try this, ask Tom? r is not data but the derivative of error which is a wiener process
-%The drift $r$ is defined as the time derivative of the prediction error, that is,
-%\begin{equation}
-%r(t) =  \dot{\epsilon} = e^{\frac{-t}{\sigma}}
-%\label{eq:drift}
-%\end{equation}
-  
