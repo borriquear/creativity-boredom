@@ -106,48 +106,47 @@ We start by defining the utility function that agents maximize.
 A utility function is a mathematical description of subjective value that is constructed from choices under incomplete information conditions. We postulate that value-based decision do not only maximize prediction, rather agents maximize the difference between prediction and boredom. In this view, organisms do not exclusively operate in prediction mode, sooner or later, depending on the intrinsic agent's motivations and how they match with the environment, the marginal utility of prediction will decrease and the organism will switch to exploration mode, that is, the organism will become less concerned with predicting its current state, and  will be prone to visit surprising states that overall increase its well being as encoded by the experience value. 
 The utility function is defined as follows,
 \begin{equation}
-    v =  p - k
+    v =  p - b
 \label{eq:vpb}
 \end{equation}
 where $v$ is the subjective experience and $p$ and $b$ represent prediction and boredom, respectively. 
-
-Equation \ref{eq:vpb} simply states that the subjective experience has two components with opposed valences, prediction pleasure and boredom. It seems clear from equation  \ref{eq:vpb} that the larger the prediction pleasure $(p)$ the greater the value of the subjective experience, limited by the boredom $(k)$ that prediction brings in.  
+It seems clear from equation \ref{eq:vpb} that the larger the prediction pleasure $(p)$ the greater the value of the subjective experience, limited by the boredom $(b)$ that prediction brings in.  
 When the prediction pleasure is greater than the boredom the subjective experience is overall positive or pleasant, on the contrary, when the boredom exceeds the prediction pleasure, experience is overall negative or painful. 
 %The quantity to maximize is thus, the subjective value $v$ and it does so by maximizing its predictive power while keeping boredom as low as possible. Accordingly, the more successful a system is in predicting its current state, the more pleasure it achieves under the constrain that the system does not become too successful in predicting upcoming events so that it gets bored. 
 
 The instantaneous subjective experience $v_t$ is calculated as the difference between the instantaneous pleasure $p_t$ and the negative pain $b_t$, which in our model is assumed to be constant or $b_t=k$. The boredom constant $k$ represents the agent's disposition to get bored and is thus, an inherent property of the system or \emph{causa sui}. Prediction pleasure, on the other hand, is directly calculated from the prediction error.
 Prediction pleasure at time $t, p_t$, is the reciprocal of prediction error at time $t, s_t$, that is, $p_t = \frac{1}{s_t}$.
-Accordingly, the value of the experience at time $t$ is the difference between the prediction pleasure at $t$ minus the boredom component.
+Accordingly, the value of the experience at time $t$ is the difference between the prediction pleasure at $t$ minus the boredom component, that is,
 \begin{equation}
     v_t = \frac{1}{s_t} -k = p_t - k
 \label{eq:vpbt}
 \end{equation}
 
-We need now to be more precise in the formulation of the terms included in equation \ref{eq:vpb}. The prediction pleasure $p$ is a function of prediction error and time. Reinforcement learning is the problem faced by an agent that must learn to predict the value of future events through the computation of the difference between one’s rational expectations of future rewards and any information that leads to a revision of expectations \citep{glimcher_understanding_2011}. Prediction error is a function of prediction error and time, specifically prediction error is the inverse of prediction error, that is, the larger is the divergence between expectations and the actual realization the less pleasant the experience is, and vice-versa, the better agents predict (the distance between expectation and realization is small) the more pleasing the experience is.
+We need now to be more precise in the formulation of the terms included in equation \ref{eq:vpbt}. Reinforcement learning is the problem faced by an agent that must learn to predict the value of future events through the computation of the difference between one’s rational expectations of future rewards and any information that leads to a revision of expectations \citep{glimcher_understanding_2011}. Prediction error is a function of prediction error and time, specifically prediction pleasure is the inverse of prediction error. The larger is the divergence between expectations and the actual realization the less pleasant the experience is, and vice-versa, the better agents predict (the distance between expectation and realization is small) the more pleasing the experience is.
 
-A reasonable assumption is that the prediction error describes a generalized Wiener process \citep{ross_stochastic_1996}. A Wiener process is particular type of a Markov process which is a stochastic process where only the current value of a random variable is relevant for future prediction.  
-Thus, the prediction error $\epsilon$ is a generalized Wiener process defined as 
+A reasonable assumption is that the prediction error describes a generalized Wiener process \citep{ross_stochastic_1996}. A Wiener process is a particular type of Markov process which is a stochastic process where only the current value of a random variable is relevant for future prediction.  
+Thus, we define the prediction error $\epsilon$ as a generalized Wiener process 
 \begin{equation}
 \begin{split}
 & d \epsilon= a dt + b dz \\
 \end{split}
 \label{eq:genwiener}
 \end{equation}
-where $\epsilon$ is a random variable that represents the prediction error, $a$ is the drift or the mean change per unit time, $b$ the variance per unit time, $dz$ is a Wiener process with zero drift and $1.0$ variance rate and $dz$ is a Wiener process with zero drift and $1.0$ variance rate. Since the drift is equal to zero, the expected value of $z$ is zero, that is, at any future time, $z$ is expected to be equal to its current value. The variance rate of $1.0$ means that the variance of the change in $z$ in a time interval of length T is equal to T i.e., the variance rate grows proportionally to the maturity time T. 
+where $\epsilon$ is a random variable that represents the prediction error, $a$ is the drift or the mean change per unit time, $b$ the variance per unit time and $dz$ is a Wiener process with zero drift and $1.0$ variance rate. Since the drift is equal to zero, the expected value of $z$ is zero, that is, at any future time, $z$ is expected to be equal to its current value. The variance rate of $1.0$ means that the variance of the change in $z$ in a time interval of length $T$ is equal to $T$ i.e. the variance rate grows proportionally to the maturity time $T$. 
 
-If we additionally assume that the variability of the "return" of prediction error in a short period of time $(\frac{\Delta}{\epsilon})$ is the same regardless of the actual value of the prediction error $\epsilon$, that is, we are equally uncertain about having a gain of for example, $10\%$ in prediction error when the prediction error is 1.6 and when it is 5.5, then prediction error is defined as
+If we additionally assume that the variability of the "return" of prediction error in a short period of time $(\frac{\Delta}{\epsilon})$ is the same regardless of the actual value of the prediction error $\epsilon$, e.g. we are equally uncertain about having a gain of for example, $10\%$ in prediction error when the prediction error is 1.6 and when it is 5.5, then the prediction error is defined as
 
 \begin{equation}
 \begin{split}
 & d \epsilon= \mu \epsilon dt + \sigma \epsilon dz \\
-& \frac{d\epsilon}{\epsilon}= \mu dt + \sigma dz
-\end{split}s
+& \frac{d \epsilon}{\epsilon}= \mu dt + \sigma dz
+\end{split}
 \label{eq:wiener}
 \end{equation}
 where $\mu$ is the expected rate of return,i.e. the percentage of gain/loss in prediction error for one time period and $\sigma$ is the volatility of prediction error.
 The variable $\mu$ can be seen as the expected percentage gain/loss of prediction error. For example, $\mu = 0.1$ means that prediction error is expected to increment by a $10\%$. The variable $\sigma$ is the volatility of the prediction error. It is expected that $\sigma$ in a world with high entropy will be larger than in a world with low entropy, ceteris paribus. For example, a surprising world with a large number of objects and events that are hard to predict will yield a large $\sigma$ while a predictable environment. Arguably, an empty room will yield a low value of $\sigma$. 
 
-Equation \ref{eq:vpb} defines the subjective experience $v$ as the difference between prediction pleasure $p$ and boredom $b$. We have so far defined the prediction error $\epsilon$, prediction pleasure is a function the prediction error and time, specifically 
+Remind that in equation \ref{eq:vpb} we defined the subjective experience $v$ as the difference between prediction pleasure $p$ and boredom $b$. We have so far defined the prediction error $\epsilon$. Prediction pleasure is a function the prediction error and time. Formally, 
 \begin{equation*}
 \begin{split}
 & p = \frac{1}{\epsilon} \\
@@ -155,190 +154,68 @@ Equation \ref{eq:vpb} defines the subjective experience $v$ as the difference be
 \label{eq:pinve}
 \end{equation*}
 
-Thus, according to equation \ref{eq:pinve} the value of the prediction pleasure $p$ is a function of the underlying stochastic variable $\epsilon$. The It\^{o} lemma allows us to characterize a function of a variable that follows a It\^{o} process. Since the prediction error $\epsilon$ is a generalized Wiener process, it  can be modeled as a It\^{o} process, 
+According to equation \ref{eq:pinve} the value of the prediction pleasure $p$ is a function of the underlying stochastic variable $\epsilon$. The It\^{o} lemma allows us to characterize a function of a variable that follows a It\^{o} process \citep{ito_stochastic_1951}. Since the prediction error $\epsilon$ is a generalized Wiener process, it can be modeled as a It\^{o} process, 
 \begin{equation*}
 \begin{split}
    \epsilon = a(\epsilon,t)dt + b(\epsilon,t)dz
 \end{split}
 \label{eq:itopr}
 \end{equation*}
-where $dz$ is a Wiener process and the drift $a$ and the variance rate $b$, rather than constant, are functions of $\epsilon$ and $t$. The It\^{o} lemma shows that a function ($f$) of a It\^{o} process ($x$) follows as well the It\^{o} process described in equation \ref{eq:itopr2}. The demonstration can be found elsewhere \citep{shreve_stochastic_2010}. 
+where $dz$ is a Wiener process and the drift $a$ and the variance rate $b$, rather than constant, are functions of $\epsilon$ and $t$. The It\^{o} lemma shows that a function $(f)$ of a It\^{o} process ($x$) follows as well the It\^{o} process described in equation \ref{eq:itopr2}. The demonstration can be found elsewhere \citep{shreve_stochastic_2010}. 
 \begin{equation}
 \begin{split}
    df = \bigg(\frac{\partial f}{\partial x} a  + \frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial ^2 f}{\partial x^2} b^2 \bigg)dt + \frac{\partial f}{\partial x}b dz
 \end{split}
 \label{eq:itopr2}
 \end{equation}
-substituting $f$ for $p$ and $x$ for $\epsilon$ gives the prediction pleasure behavior $p$ derived the underlying prediction error $\epsilon$. Both  $\epsilon$ and $p$ follows geometric Brownian motion.
-
-
-
-
-
-
-We can now relate equation \ref{eq:itopr2} with the utility function defined in equation \ref{eq:vpb}. According to the It\^{o} lemma, the stochastic process of a function of $p$ and $t$ is simply obtained by substituting the drift rate $a = \mu p$ and the standard deviation rate $b = \sigma p$ into equation \ref{eq:itopr2}, resulting the It\^{o} process below,
-
-\begin{equation}
+substituting $f$ for $p$ and $x$ for $\epsilon$ gives the prediction pleasure behavior $p$ derived from the underlying prediction error $\epsilon$. Both $\epsilon$ and $p$ follows geometric Brownian motion.
+Thus, the It\^{o} process followed by the prediction pleasure $p$ is 
+\begin{equation*}
 \begin{split}
-   df = \bigg(\frac{\partial f}{\partial p} \mu p  + \frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial ^2 f}{\partial p^2} (\sigma p)^2 \bigg)dt + \frac{\partial f}{\partial p}\sigma p dz
+ & dp =  (\frac{-\mu}{\epsilon^2} + frac{\sigma^2}{\epsilon}) - frac{\sigma}{\epsilon}dz \\
 \end{split}
 \label{eq:itopr3}
-\end{equation}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{The Black-Scholes Model}
-\label{ss:bsm}
-%2 introduce the Ito lemma option price model for the underlying asset stock's price and time
-
-We are interested in quantifying the subjective experience as a function of the underlying prediction pleasure and boredom over time. To model subjective experience using pleasure and pain as proxies, we borrow from the Black-Scholes model for option pricing  \citep{black_pricing_1973}. The Black-Scholes model will thus, help us establishing a working analytical framework to study the interplay between prediction and boredom. In a seemingly way as an option price is a derivative of a stock price, a subjective experience value is calculated via the underlying prediction pleasure at a given time $t$ within a time horizon $T, t < T$. 
- 
-The underlying assumption for our model of prediction pleasure inspired in the Black-Scholes model is that both the Markov and the Martingale properties in stock price change also hold for prediction error. For that we need to assume that the prediction error is a stochastic process with no memory, that is, the conditional probability distribution of the future states only depends on the current state and is therefore independent of any previous state (Markov property) and that knowledge of the past will be of no use in better predicting the future (Martingale property). These assumptions are compatible with the free energy principle, which is intended to explain biological systems behavior in changing a environment, under ergodic assumptions \citep{birkhoff_proof_1931}. Crucially, the ergodic assumption is what allows the system to minimize sensory entropy by means of surprise minimization at all times \citep{friston_action_2010}. 
-%Intuitively, the ergodic theorem states that for a random variable, in the long run, the time average is equal to the space average \citep{birkhoff_proof_1931}. 
-
-In the rest of the section we derive the Black–Scholes equation from the It\^{o} lemma \citep{ito_stochastic_1951} \footnote{Black-Scholes can  also be derived from a bionamial tree, see pages 298-300 in \citep{hull_options_2011}}. Those not interested in the steps previous to the obtention of the model can directly jump to  the results section but having in mind equation \ref{eq:discf23}.
-
-%\subsection{Derivation of the Black-Scholes model}
-%\label{se:bsm}
-
-It is possible to use the  It\^{o} lemma to characterize, for example, the process $\ln p$, where $p$ is the prediction pleasure
-\begin{equation*}
-\begin{split}
-  f = \ln p
-\end{split}
-\label{eq:slns}
-\end{equation*} 
-Substituting $f = \ln p$ in equation \ref{eq:itopr3} we obtain a generalized Wiener process with constant drift $\mu - \frac{\sigma^2}{2}$ and constant variance $\sigma^2$ 
-\begin{equation*}
-\begin{split}
-df =  \bigg( \mu - \frac{\sigma^2}{2} \bigg)dt + \sigma dz
-\end{split}
-\label{eq:slns2}
-\end{equation*} 
-
-The change in $\ln p $ between instant time 0 and final time T is therefore normally distributed with mean and variance as shown below
-% with mean $(\mu - \frac{\sigma^2}{2})T$ and variance $\sigma^2T$
-\begin{equation*}
-\begin{split}
- & \ln p_T - \ln p_0 \sim N \bigg( \big(\mu - \frac{\sigma ^2}{2} \big) T, \sigma^2 T \bigg) \\
- & \ln p_T  \sim N \bigg( \ln p_0 + \big(\mu - \frac{\sigma ^2}{2} \big) T, \sigma^2 T \bigg) 
-\end{split}
-\label{eq:slns3}
 \end{equation*}
-Since the random variable $\ln p$ is normally distributed, the random variable  prediction pleasure $p$ follows a lognormal distribution. 
-%
-%Discount Factor
-%
+Equation \ref{eq:itopr3} indicates that $p = \frac{1}{\epsilon}$ is a It\^{o} process \footnote{Note that equation \ref{eq:itopr3} is not a generalized Wiener process because the drift rate and the variance rate are not constant.} with drift rate $\frac{-\mu}{\epsilon^2} + frac{\sigma^2}{\epsilon}$ and standard deviation rate $frac{-\sigma}{\epsilon}$.
 
-The lognormal property of $p$ can be used to study the
-probability distribution of the rate $r$ of the prediction pleasure percentage earned/loss between two instants. The rate $r$ allows us to investigate the dynamics of prediction and pleasure and the underlying subjective experience. 
-%r is risk free interest rate, discount the value ofsomething back to today
-In financial modeling, the interest rate connects the present with the future. Similarly, the relationship between the prediction pleasure between initial time $t = 0$ and final time time, $t=T$ is given by the equation
-\begin{equation*}
-   p_t = p_0 e^{r t}
-\label{eq:vpbpt}
-\end{equation*}
-solving for $r$ we have
-\begin{equation*}
-   r = \frac{1}{t}\ln \frac{p_t}{p_0}
-\label{eq:vpbpt2}
-\end{equation*}
-and as we saw before, the random variable $\ln p$ is normal, then   
-\begin{equation}
-   r \sim  N \bigg( \mu - \frac{\sigma ^2}{2} , \frac{\sigma^2}{T} \bigg) 
-\label{eq:vpbpt3}
-\end{equation}
-%Note that the standard deviation decreases with time, that is, the closer we are to the expiration time the less uncertainty we have about the value of the prediction rate, on the contrary .OJO quizas quitar t in varianza.
+The prediction error $\epsilon$ is lognormally distributed, $\ln \epsilon \sim N((\mu -frac{\sigma^2}{2})T, \sigma \sqrt(T)$, and the inverse of the prediction error or the prediction pleasure is also lognormally distributed, $\ln p \sim N((frac{\sigma^2}{2} - \mu)T, \sigma \sqrt(T)$ (See the Appendix for the demonstration). We use Monte Carlo simulation to sampling random outcomes of the It\^{o} process with a Monte Carlo simulation.
+%yosolo montecarlo
+%A Monte Carlo simulation of a stochastic process is a procedure for sampling random outcomes for the process. We will use it as a way of developing some understanding of the nature of the stock price process in equation (14.6).
 
-%The discount factor $r$ can be understood as a prediction rate, which in essence, represents how much structure there is in the outside world. For example, in an external world in which information can not be compressed at all, $r$ will be zero because a structure-less world entirely lacks predictability. In the other extreme of the spectrum, a very predictable world will have a large value of $r$. 
-%The prediction rate $r$ can thus, be seen as a proxy for the structure of the outside world. The larger the prediction rate $r$, the more structure there is in the world to be discover by an agent equipped with the proper perceptual, motoric and cognitive capabilities. 
+%yosolo rate of discount
+%The quantity that systems maximized is defined at any give instant $t$ in the %equation \ref{eq:vpbt}}. 
+Consider now that we are interested in studying the behavior of a system with a boredom constant $k$ over a period of time $T$. The expected experience value at time $t$ $(v_t)$ is its expected value at time $T$ $(v_t)$ discounted at the rate $r$. This idea relies upon the method of valuation called discounted cash flow which is used to value assets. The money in the future does not value the same than now, this is because one needs to discount the price at the rate at which the money grows. For example, a $70\$$ asset with an annual growth rate of $r=10\%$ and 5 years maturity is value today $54.6\$$. This same concept borrowed from mathematical finance is still valid for our purpose.
+%http://www.investopedia.com/terms/d/dcf.asp 
 
-Consider now that we are interested in studying the behavior of a system with a boredom constant $k$ over a period of time $T$. The expected experience value at time t ($v_t$) is its expected value at time $T$ discounted at the rate $r$.  
+The discount factor $r$ can be here understood as a prediction rate, which in essence, represents how much structure there is in the outside world. For example, in an external world in which information can not be compressed, $r$ will be zero. In this scenario the system's experience will be dominated by boredom because a structure-less world entirely lacks predictability. 
+In the other extreme of the spectrum, a predictable world will have a large positive $r$. The larger the prediction rate $r$, the more structure there is in the world to be discover by an agent equipped with the proper perceptual, motoric and cognitive capabilities. The prediction rate $r$ can thus, be seen as a proxy for the structure of the outside world. 
+
+The value of the experience of the agent at time $t, t < T$ is its expected value at time T at the prediction rate $r$. Thus,
 \begin{equation}
 \begin{split}
     v_t  & =  e^{-r(T-t)}\hat{E}(p_{t} - k)  \\
        & = e^{-r(T-t)}\hat{E}(p_{t}) - k e^{-r(T-t)} \\
+       & = e^{-r(T-t)}p_{t} e^{r(T-t)}  - k e^{-r(T-t)} \\ 
+        & = p_{t}  - k e^{-r(T-t)} 
 \end{split}
 \label{eq:discf}
 \end{equation}
+where $v_t$ is the experience value at time $t$, $p_{t}$ is the prediction pleasure at time $t$, $k$ is the boredom constant and $r$ is the prediction.   
+According to equation \ref{eq:discf} the subjective experience at time $t, t < T$ is equal to the expected prediction pleasure minus the boredom at the expiration time $T$ discounted at rate $r$. 
+If the expiration time $T$ is very far in the future, then the value of the subjective experience will be very similar to the prediction pleasure, ,$ v_{t,T -t \to \infty} =  p_{t} - k$. On the other hand, if the expiration date is near, $(T-t \sim 0)$, the subjective experience is equal to prediction pleasure minus the boredom constant,$ v_{t,t \to T} =  p_{t} - k $. 
 
-The value of the subjective experience at time t ($t <T$), $v_t$, is thus, equal to the expected prediction pleasure minus the boredom at the expiration time T, discounted at a discount rate $r$. Substituting equation \ref{eq:vpbt} into equation \ref{eq:discf} gives
-\begin{equation}
-\begin{split}
-    v_t  & =  p_{t} - k e^{-r(T-t)}
-\end{split}
-\label{eq:discf2}
-\end{equation}
-If the expiration time $T$ is very far in the future, then the value of the subjective experience will be very similar to the prediction pleasure. On the other hand, if the expiration date is near, $(T-t \sim 0)$, the subjective experience is equal to prediction pleasure minus the boredom constant. 
+Equation \ref{eq:discf} assumes that both prediction and boredom mode are equally likely. A more realistic model will weight the prediction and boredom terms by their respective probabilities. In a seemingly way as an option price is a derivative of a stock price, a subjective experience value is calculated via the underlying prediction pleasure at a given time $t$ within a time horizon $T, t < T$. To model subjective experience using pleasure and pain as proxies, we borrow from the Black-Scholes-Merton model for option pricing  \citep{black_pricing_1973}. The analogy between the experience value and the option price consists on identifying a simple fact, just as the option price is a "derivative" of an underlying asset over time, the subjective experience is a function of the underlying prediction pleasure. 
+The Black-Scholes model will thus, help us establishing a working analytical framework to study-Merton the interplay between prediction and boredom. For a more in depth discussion on the Black-Scholes-Merton model, the reader might want to consult the Appendix together with the seminal paper \citep{black_pricing_1973} and two excellent textbooks \citep{hull_options_2005} and \citep{duffie_dynamic_2001}.
 
-Equation \ref{eq:discf2} assumes that both prediction and boredom mode are equally likely. However, a more realistic model will weight the prediction and boredom terms by their respective probabilities. We use the Black-Scholes formula to define the subjective experience relative to the prediction pleasure constrained by the boredom component. 
-
-The Black-Scholes formula to calculate the price of a call option (buying) for an underlying stock  price $s$, strike price $k$, maturity $T$ and risk free interest rate $r$ is 
-
-\begin{equation}
-\begin{split}
- c(s_t,k,r,T)  = s_t N(d_1) - k e^{-r(T-t)}N(d_2)
- \end{split}
-  \label{eq:bsmcall}
-\end{equation}
- 
-where $s_t$ is the price of the underlying stock at time $t$ defined as a generalized Wiener process, $k$ is the strike price of the option and $r$ is the constant riskless interest rate used to discount the value of the option back to time $t$ from the maturity time $T$.
-
-%short rate interest rate at which an entity can borrow money. 
-The terms $N(d_1)$ and $N(d_2)$ in equation \ref{eq:bsmcall} are cumulative standard normal distributions, $N(d_i) = P(x > d_i)$. In particular, $N(d_2)$ is the probability that the option will be exercised. This will occur when the stock price is larger than the strike price. Note that we are pricing options, therefore the strike price $k$ is only paid if the option is in the money. The interpretation of $N(d_1)$ is less straightforward but simplifying, it represents the probability that the stock price is less in value than the strike price, which is counted as zero in the calculus of the option price. In a call option (equation \ref{eq:bsmcall}), the buyer will be interested in exercise the option at time T, that is, buy the underlying stock, only if "is in the money", that is, $s_t N(d_1) > k e^{-r(T-t)}N(d_2)$. The discount factor $e^{-r(T-t)}$ reflects the need to take into account how much will cost to the buyer to borrow the money at the current time t in order to exercised the option, which is precisely the reason why, as mentioned before, the rate r connects the current and the future price. For a more in depth discussion on the Black-Scholes model, the reader might want to consult the seminal paper \citep{black_pricing_1973} and two excellent textbooks \citep{hull_options_2005} and \citep{duffie_dynamic_2001}.
-
-%YOSOLO table with the similarities between the two
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Once we have derived the Black-Scholes equation for option price, we can go further with our analogy and quantify the experience value. The subjective experience is a function of the underlying prediction pleasure and boredom. In the Black-Scholes option pricing model (equation \ref{eq:bsmcall}), the option is exercised only when the payoff is positive, in our model, on the other hand, the subjective experience is always "exercised". This means that the experience is what it is, positive when the prediction component is larger than the boredom term and negative the boredom exceeds the prediction pleasure. Taking this into account, we define the value of the experience as the difference between prediction and boredom discounted and weighted by the probability of being in each mode,
+In the Black-Scholes-Merton option pricing model (Appendix equation \ref{eq:bsmcall}), the option is exercised only when the payoff is positive, that is to say, the stock  has more value than the strike price stipulated in the contract, ($S_t - K >0 $), when the stock has less value than the strike price, the holder of the option is not obligated to buy the asset. In our model, on the other hand, the subjective experience is always "exercised". This means that the experience is what it is, positive when prediction is larger than boredom and negative the boredom exceeds the prediction pleasure. Taking this into account, we define the value of the experience as the difference between prediction and boredom discounted and weighted by the probability of being in each mode,
 \begin{equation}
 \begin{split}
     v_t  & =  p_{t}N(d_1) - k e^{-r(T-t)}N(d_2)
 \end{split}
 \label{eq:discf23}
 \end{equation}
-where the first term in the right side of equation \ref{eq:discf23} represents the prediction pleasure at time $t$, $p_{t}$, factored by the probability of being in predictive mode, $N(d_1)$, and the second term quantifies the pain trigger by a boring experience in a world with complexity $r$ discounted at time t and factored by the probability of being in boredom mode, $N(d_2)$. $N(d_1)$ and $N(d_2)$ are as in the Black-Scholes equation cumulative probability distribution functions for the variables $d_1$ and $d_2$, which are now defined as 
+where the first term in the right side represents the prediction pleasure  factored by the probability of being in predictive mode, $N(d_1)$, and the second term quantifies the pain trigger by a boring experience in a world with a prediction rate $r$ discounted at time $t$ and factored by the probability of being in boredom mode, $N(d_2)$. The terms $N(d_1)$ and $N(d_2)$ in equation \ref{eq:discd1d2} are as in the Black-Scholes-Merton equation, cumulative probability distribution functions
+$N(d_i) = P(x > d_i)$, of the variables $d_1$ and $d_2$, which are now defined as 
 \begin{equation}
 \begin{split}
     & d_1 = \frac{\log \frac{p_t}{k}  + (r_t + \frac{\sigma ^2}{2})(T-t)}{\sigma \sqrt{T-t}}  \\
@@ -346,10 +223,8 @@ where the first term in the right side of equation \ref{eq:discf23} represents t
 \end{split}
 \label{eq:discd1d2}
 \end{equation}
-A simple intuitive understanding of equation \ref{eq:discf23} comes from realizing that the agent transitions between two dynamic regimes -prediction and boredom- and that the probability of being in prediction mode, that is, having more pleasure than pain is given by the probability $N(d_1)$ and the probability of being in boredom mode $N(d_2)$.
-%The variables $d_1$ and $d_2$ are identical except for two things, i) the first term in the numerator is $\frac{\log{s_t}}{k}$ in $d_1$ and its inverse, $\frac{\log k}{s_t}$, in $d_2$ and ii) when prediction pleasure is equal to the boredom constant, $s = k$, the probability of being in prediction mode increments with the variability and decrements by the same amount in the boredom case. 
+A simple intuitive understanding of equation \ref{eq:discf23} comes from realizing that the agent transitions between two dynamic regimes -prediction and boredom- and that the probability of being in prediction mode, that is, having more pleasure than pain is given by the probability $N(d_1)$ and the probability of being in boredom mode $N(d_2)$. Equation \ref{eq:discf23} captures boredom begets creativity in the sense that boredom decreases the subjective value, triggering corrective actions like exploring or wandering at the expense of reducing prediction pleasure but overall incrementing the subjective experience value.
 
-Equation \ref{eq:discf23} captures boredom begets creativity in the sense that boredom decreases the subjective value, triggering corrective actions like exploring or wandering at the expense of reducing prediction pleasure but overall incrementing the subjective experience value.
 
 \section{Results}
 \label{se:re}
@@ -459,6 +334,13 @@ The importance of boredom needs still to be recognized by researchers. Boredom s
 \newpage
 \section*{Appendix}
 \label{se:ap}
+
+
+%http://math.stackexchange.com/questions/404134/expectation-of-inverse-of-variable-which-is-lognormal
+%Equation (14.19) shows that ln ST is normally distributed. A variable has a lognormal
+%distribution if the natural logarithm of the variable is normally distributed. The model
+%of stock price behavior we have developed in this chapter therefore implies that a stock’s
+%price at time T, given its price today, is lognormally distributed
 \subsection{Surprisal}
 The self information or surprisal associated with an outcome x is defined as 
 \begin{equation}
@@ -523,6 +405,74 @@ In essence, Equation \ref{eq:femin} defines a Bayesian evidence model in which m
 %With the process p (ito process) of prediction pleasure we use monte carlo simulation to generate different values of p, from an initial p_0, because we know that p is lognormar with -a, b^2. (HAY QE HACER CAMBIOS EN EL CODIGO EN MONTECARLO PART + EXPLAIN THIS IN SIMULATION SECTION).
 %now we have p numerically, next step is plug this into eq plus v is a forward contract, explain the parameter r andthe parameter sigma, the value of the experience now is the value at T discounted at rate r.
 % The present value is always less than or equal to the future value because money has interest-earning potential, a characteristic referred to as the time value of money, except during times of negative interest rates, when the present value will be greater than the future value. EXPERIENCE value is money,sice the world is structured and we like to predict, the experience will be more worthy in the future the larger is the interest rate of r OR WORLD STRUCTURE. if r =0 the value of money (experience) is the same today and in the future because there is no interest rate, the world is perfectly noisy, if r < 0 the money today is worth more than in the future or prediting doesnt pay you off, it causes pain. If r > 0 the money today is less than in the future, because the intereest rater is positive that is, there is structure so predicting will increase pleasure.
+The Black-Scholes formula to calculate the price of a call option (buying) for an underlying stock  price $s$, strike price $k$, maturity $T$ and risk free interest rate $r$ is 
+\begin{equation}
+\begin{split}
+ c(s_t,k,r,T)  = s_t N(d_1) - k e^{-r(T-t)}N(d_2)
+ \end{split}
+  \label{eq:bsmcall}
+\end{equation}
+ 
+where $s_t$ is the price of the underlying stock at time $t$ defined as a generalized Wiener process, $k$ is the strike price of the option and $r$ is the constant riskless interest rate used to discount the value of the option back to time $t$ from the maturity time $T$.
+
+
+In the rest of the section we derive the Black–Scholes equation from the It\^{o} lemma \citep{ito_stochastic_1951} \footnote{Black-Scholes can  also be derived from a bionamial tree, see pages 298-300 in \citep{hull_options_2011}}. Those not interested in the steps previous to the obtention of the model can directly jump to  the results section but having in mind equation \ref{eq:discf23}.
+
+It is possible to use the  It\^{o} lemma to characterize, for example, the process $\ln p$, where $p$ is the prediction pleasure
+\begin{equation*}
+\begin{split}
+  f = \ln p
+\end{split}
+\label{eq:slns}
+\end{equation*} 
+Substituting $f = \ln p$ in equation \ref{eq:itopr3} we obtain a generalized Wiener process with constant drift $\mu - \frac{\sigma^2}{2}$ and constant variance $\sigma^2$ 
+\begin{equation*}
+\begin{split}
+df =  \bigg( \mu - \frac{\sigma^2}{2} \bigg)dt + \sigma dz
+\end{split}
+\label{eq:slns2}
+\end{equation*} 
+
+The change in $\ln p $ between instant time 0 and final time T is therefore normally distributed with mean and variance as shown below
+% with mean $(\mu - \frac{\sigma^2}{2})T$ and variance $\sigma^2T$
+\begin{equation*}
+\begin{split}
+ & \ln p_T - \ln p_0 \sim N \bigg( \big(\mu - \frac{\sigma ^2}{2} \big) T, \sigma^2 T \bigg) \\
+ & \ln p_T  \sim N \bigg( \ln p_0 + \big(\mu - \frac{\sigma ^2}{2} \big) T, \sigma^2 T \bigg) 
+\end{split}
+\label{eq:slns3}
+\end{equation*}
+Since the random variable $\ln p$ is normally distributed, the random variable  prediction pleasure $p$ follows a lognormal distribution. 
+%
+%Discount Factor
+%
+
+The lognormal property of $p$ can be used to study the
+probability distribution of the rate $r$ of the prediction pleasure percentage earned/loss between two instants. The rate $r$ allows us to investigate the dynamics of prediction and pleasure and the underlying subjective experience. 
+%r is risk free interest rate, discount the value ofsomething back to today
+In financial modeling, the interest rate connects the present with the future. Similarly, the relationship between the prediction pleasure between initial time $t = 0$ and final time time, $t=T$ is given by the equation
+\begin{equation*}
+   p_t = p_0 e^{r t}
+\label{eq:vpbpt}
+\end{equation*}
+solving for $r$ we have
+\begin{equation*}
+   r = \frac{1}{t}\ln \frac{p_t}{p_0}
+\label{eq:vpbpt2}
+\end{equation*}
+and as we saw before, the random variable $\ln p$ is normal, then   
+\begin{equation}
+   r \sim  N \bigg( \mu - \frac{\sigma ^2}{2} , \frac{\sigma^2}{T} \bigg) 
+\label{eq:vpbpt3}
+\end{equation}
+%Note that the standard deviation decreases with time, that is, the closer we are to the expiration time the less uncertainty we have about the value of the prediction rate, on the contrary .OJO quizas quitar t in varianza.
+
+
+
+The underlying assumption for our model of prediction pleasure inspired in the Black-Scholes model is that both the Markov and the Martingale properties in stock price change also hold for prediction error. For that we need to assume that the prediction error is a stochastic process with no memory, that is, the conditional probability distribution of the future states only depends on the current state and is therefore independent of any previous state (Markov property) and that knowledge of the past will be of no use in better predicting the future (Martingale property). These assumptions are compatible with the free energy principle, which is intended to explain biological systems behavior in changing a environment, under ergodic assumptions \citep{birkhoff_proof_1931}. Crucially, the ergodic assumption is what allows the system to minimize sensory entropy by means of surprise minimization at all times \citep{friston_action_2010}. 
+%Intuitively, the ergodic theorem states that for a random variable, in the long run, the time average is equal to the space average \citep{birkhoff_proof_1931}.
+
+
 
 
 The most important result in the valuation of options is due to Black, Scholes and Merton \citep{black_pricing_1973}. An option is a security giving the right to sell or buy an asset within a specified period of time. The Black-Scholes formula calculates the price for both the call option (buying) and the put option (selling) at a maturity T with strike price. An "European option" gives the right to buy the asset for the striking price, thus, if the the asset's price at maturity is larger than the strike price the option is exercised. The price of a call option is therefore $max(s_T - k, 0)$, that is, the price for this option is the difference between the actual price and the strike price when $s_T - k >0$ or 0 otherwise, because if the asset's price is less than the strike price $(s_T < k)$ we are not obligated to buy the asset. 
@@ -559,6 +509,8 @@ The interpretation of $N(d_1)$ is more complicated, see \citep{} for a comprehen
 %Understanding N(d1) and N(d2): Risk-Adjusted Probabilities in the Black-Scholes Model 
 Form Equation \ref{eq:bsmd2} it is straightforward to see that for zero variability $\sigma$, $d_1 = d_2$, for large variability and time, then $N(d_2)\sim 0$.  
 
+%short rate interest rate at which an entity can borrow money. 
+The terms $N(d_1)$ and $N(d_2)$ in equation \ref{eq:bsmcall} are cumulative standard normal distributions, $N(d_i) = P(x > d_i)$. In particular, $N(d_2)$ is the probability that the option will be exercised. This will occur when the stock price is larger than the strike price. Note that we are pricing options, therefore the strike price $k$ is only paid if the option is in the money. The interpretation of $N(d_1)$ is less straightforward but simplifying, it represents the probability that the stock price is less in value than the strike price, which is counted as zero in the calculus of the option price. In a call option (equation \ref{eq:bsmcall}), the buyer will be interested in exercise the option at time T, that is, buy the underlying stock, only if "is in the money", that is, $s_t N(d_1) > k e^{-r(T-t)}N(d_2)$. The discount factor $e^{-r(T-t)}$ reflects the need to take into account how much will cost to the buyer to borrow the money at the current time t in order to exercised the option, which is precisely the reason why, as mentioned before, the rate r connects the current and the future price. 
 We build on the analogy that subjective experience can be studied as a derivative or option of the prediction pleasure, that is, just as options price are calculated via the underlying stock price, it is possible establish approach to calculate subjective value referred to prediction pleasure. 
 In this vein, given the distribution of the prediction pleasure P which consists on N samples $N = T / \Delta T$
 \begin{equation}
