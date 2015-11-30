@@ -143,18 +143,18 @@ If we additionally assume that the variability of the "return" of prediction err
 \end{split}
 \label{eq:wiener}
 \end{equation}
-where $\mu$ is the expected rate of return,i.e. the percentage of gain/loss in prediction error for one time period and $\sigma$ is the volatility of prediction error.
+where $\mu$ is the expected rate of return, i.e. the percentage of gain/loss in prediction error for one time period and $\sigma$ is the volatility of prediction error.
 The variable $\mu$ can be seen as the expected percentage gain/loss of prediction error. For example, $\mu = 0.1$ means that prediction error is expected to increment by a $10\%$. The variable $\sigma$ is the volatility of the prediction error. It is expected that $\sigma$ in a world with high entropy will be larger than in a world with low entropy, ceteris paribus. For example, a surprising world with a large number of objects and events that are hard to predict will yield a large $\sigma$ while a predictable environment. Arguably, an empty room will yield a low value of $\sigma$. 
 
 Remind that in equation \ref{eq:vpb} we defined the subjective experience $v$ as the difference between prediction pleasure $p$ and boredom $b$. We have so far defined the prediction error $\epsilon$. Prediction pleasure is a function the prediction error and time. Formally, 
-\begin{equation*}
+\begin{equation}
 \begin{split}
 & p = \frac{1}{\epsilon} \\
 \end{split}
 \label{eq:pinve}
-\end{equation*}
+\end{equation}
 
-According to equation \ref{eq:pinve} the value of the prediction pleasure $p$ is a function of the underlying stochastic variable $\epsilon$. The It\^{o} lemma allows us to characterize a function of a variable that follows a It\^{o} process \citep{ito_stochastic_1951}. Since the prediction error $\epsilon$ is a generalized Wiener process, it can be modeled as a It\^{o} process, 
+According to equation \ref{eq:pinve}, the value of the prediction pleasure $p$ is a function of the underlying stochastic variable $\epsilon$. The It\^{o} lemma allows us to characterize a function of a variable that follows a It\^{o} process \citep{ito_stochastic_1951}. Since the prediction error $\epsilon$ is a generalized Wiener process, it can be modeled as a It\^{o} process, 
 \begin{equation*}
 \begin{split}
    \epsilon = a(\epsilon,t)dt + b(\epsilon,t)dz
@@ -170,21 +170,21 @@ where $dz$ is a Wiener process and the drift $a$ and the variance rate $b$, rath
 \end{equation}
 substituting $f$ for $p$ and $x$ for $\epsilon$ gives the prediction pleasure behavior $p$ derived from the underlying prediction error $\epsilon$. Both $\epsilon$ and $p$ follows geometric Brownian motion.
 Thus, the It\^{o} process followed by the prediction pleasure $p$ is 
-\begin{equation*}
+\begin{equation}
 \begin{split}
- & dp =  (\frac{-\mu}{\epsilon^2} + \frac{\sigma^2}{\epsilon}) - \frac{\sigma}{\epsilon}dz \\
+ & dp =  (- \frac{\mu}{\epsilon^2} + \frac{\sigma^2}{\epsilon})dt - \frac{\sigma}{\epsilon}dz \\
 \end{split}
 \label{eq:itopr3}
-\end{equation*}
+\end{equation}
 Equation \ref{eq:itopr3} indicates that $p = \frac{1}{\epsilon}$ is a It\^{o} process \footnote{Note that equation \ref{eq:itopr3} is not a generalized Wiener process because the drift rate and the variance rate are not constant.} with drift rate $\frac{-\mu}{\epsilon^2} + \frac{\sigma^2}{\epsilon}$ and standard deviation rate $\frac{-\sigma}{\epsilon}$.
 
 The prediction error $\epsilon$ is lognormally distributed, 
 \begin{equation*}
-\ln \epsilon \sim N((\mu -\frac{\sigma^2}{2})T, \sigma \sqrt(T)
+\ln \epsilon \sim N((\mu -\frac{\sigma^2}{2})T, \sigma \sqrt{T}
 \end{equation*}
 and the inverse of the prediction error or the prediction pleasure is also lognormally distributed, (See the Appendix for the demonstration)
 \begin{equation*}
-\ln p \sim N((\frac{\sigma^2}{2} - \mu)T, \sigma \sqrt(T)
+\ln p \sim N((\frac{\sigma^2}{2} - \mu)T, \sigma \sqrt{T}
 \end{equation*}
 We use Monte Carlo simulation to sampling random outcomes of the It\^{o} process.
 %yosolo montecarlo
@@ -218,35 +218,48 @@ The Black-Scholes model will thus, help us establishing a working analytical fra
 In the Black-Scholes-Merton option pricing model (Appendix equation \ref{eq:bsmcall}), the option is exercised only when the payoff is positive, that is to say, the stock  has more value than the strike price stipulated in the contract, ($S_t - K >0 $), when the stock has less value than the strike price, the holder of the option is not obligated to buy the asset. In our model, on the other hand, the subjective experience is always "exercised". This means that the experience is what it is, positive when prediction is larger than boredom and negative the boredom exceeds the prediction pleasure. Taking this into account, we define the value of the experience as the difference between prediction and boredom discounted and weighted by the probability of being in each mode,
 \begin{equation}
 \begin{split}
-    v_t  & =  p_{t}N(d_1) - k e^{-r(T-t)}N(d_2)
+   &  v_t  & =  p_{t}N(d_1) - k e^{-r(T-t)}N(d_2) \\ 
+   &  v_t  & =  p_{t}(1 - N(d_2)) - k e^{-r(T-t)}N(d_2) 
 \end{split}
 \label{eq:discf23}
 \end{equation}
-where the first term in the right side represents the prediction pleasure  factored by the probability of being in predictive mode, $N(d_1)$, and the second term quantifies the pain trigger by a boring experience in a world with a prediction rate $r$ discounted at time $t$ and factored by the probability of being in boredom mode, $N(d_2)$. The terms $N(d_1)$ and $N(d_2)$ in equation \ref{eq:discd1d2} are as in the Black-Scholes-Merton equation, cumulative probability distribution functions
-$N(d_i) = P(x > d_i)$, of the variables $d_1$ and $d_2$, which are now defined as 
+where the first term in the right side represents the prediction pleasure  factored by the probability of being in predictive mode, $N(d_1)$, and the second term quantifies the pain trigger by a boring experience in a world with a prediction rate $r$ discounted at time $t$ and factored by the probability of being in boredom mode, $N(d_2)$. The terms $N(d_1)$ and $N(d_2)$ in equation \ref{eq:discf23} are as in the Black-Scholes-Merton equation, cumulative probability distribution functions $N(d_i) = P(x > d_i)$, of the variables $d_1$ and $d_2$. Since the agent at any give instant can be in one of the two possible modes, we just need to define one of the two terms, $d_2$, to obtain $N(d_2)$ and $N(d_1) = 1 - N(d_2)$
 \begin{equation}
 \begin{split}
-    & d_1 = \frac{\log \frac{p_t}{k}  + (r_t + \frac{\sigma ^2}{2})(T-t)}{\sigma \sqrt{T-t}}  \\
-    & d_2 = \frac{\log \frac{k}{p_t}  + (r_t - \frac{\sigma ^2}{2})(T-t)}{\sigma \sqrt{T-t}} 
+    & d_2 = \frac{\log \frac{k}{p_t}  + (\frac{\sigma ^2}{2} - r_t)(T-t)}{\sigma \sqrt{T-t}} 
 \end{split}
 \label{eq:discd1d2}
 \end{equation}
-A simple intuitive understanding of equation \ref{eq:discf23} comes from realizing that the agent transitions between two dynamic regimes -prediction and boredom- and that the probability of being in prediction mode, that is, having more pleasure than pain is given by the probability $N(d_1)$ and the probability of being in boredom mode $N(d_2)$. Equation \ref{eq:discf23} captures boredom begets creativity in the sense that boredom decreases the subjective value, triggering corrective actions like exploring or wandering at the expense of reducing prediction pleasure but overall incrementing the subjective experience value.
+%& d_1 = \frac{\log \frac{p_t}{k}  + (r + \frac{\sigma ^2}{2})(T-t)}{\sigma \sqrt{T-t}}  \\
+A simple intuitive understanding of equation \ref{eq:discf23} comes from realizing that the agent transitions between two dynamic regimes -prediction and boredom- and that the probability of being in prediction mode, that is, having more pleasure than pain is given by the probability $N(d_1)$ and the probability of being in boredom mode $N(d_2)$. 
+To get a grasping of the workings of the model and to show that it has the right general properties, we consider what happens when some of the parameters in  equation \ref{eq:discd1d2} take extreme values. If prediction pleasure is very large compared to boredom, $p_t/k >> 1$, $d_2$ will be very small and $d_1$ very large, resulting $N(d_1) \to 1$ and $N(d_2) \to 0$. In this situation, the overall experience will be positive. On the contrary, when $p_t/k \to 0$ the overall experience  will be negative or dominated by boredom. 
 
+Equation \ref{eq:discf23} captures boredom begets creativity in the sense that boredom decreases the subjective value, possibly triggering corrective actions like exploring or wandering at the expense of reducing prediction pleasure but overall incrementing the subjective experience value.
 
 \section{Results}
 \label{se:re}
 
-We run simulations of the model described in equation \ref{eq:discf23} in different scenarios, for different settings of the three parameters of the model - initial prediction pleasure $(p_0)$, expected rate of variation of the prediction pleasure $(r)$, variance of the prediction pleasure $(\sigma)$- and the boredom constant $(k)$. The prediction pleasure $(p_0)$ and the boredom constant ($k$) can be seen as the priors. For example, all things being equal, an agent with a large ratio $k/p_0$ is likely to have a predominantly boredom experience compared to another agent with a large $p_0/k$ which, on the contrary, will likely have an positive experience dominated by prediction pleasure. In addition to the bias or predisposition of the agent to get bored given by the ratio $k/p_0$, the expected rate of return $r$ represents the predictability of the environment. For example, assuming the the world is codified as a string of length n $(w = \{w_1, ..., w_n \})$, r can be defined as the ratio between the Kolmogorov complexity and n, $k(w)/n$ . Thus, the world is random or unpredictable when $r =1$ and trivially predictable when $r =0$. 
+We run simulations of the model described in equation \ref{eq:discf23} in different scenarios, for different settings of the parameters of the model - initial prediction pleasure $p_0$, expected rate return $\hat{r}$, the boredom $k$, the drift, $\mu$, and the variance per unit time,$\sigma$,of the prediction error. We assumed that prediction error follows a Wiener process, therefore, $\mu = 1$ and $\sigma = 0$. 
+The initial prediction pleasure, $p_0$, and the boredom constant, $k$, can be seen as the priors. For example, all things being equal, an agent with a large ratio $k/p_0$ is likely to have a predominantly boredom experience compared to another agent with a large $p_0/k$ which, on the contrary, will likely have an positive experience dominated by prediction pleasure. 
+The priors $p_0/k$ are useful to classify agents into two categories, those with large $p_0/k$ enjoy predicting are "copiers", while those with low $p_0/k$ tend to get bored, and are "explorers". 
+In addition to the bias or predisposition of the agent to get bored given by the ratio $k/p_0$, the expected rate of return $\hat{r}$ represents the environment's complexity. Thus, a world with large $\hat{r}$ has more structure or patterns to be decoded by the agent than a world with low $r$. We normalize the value of $\hat{r}$ to take values between $0$ and the maximum of $p_0$ and $k$.
+%For example, aenviroment assuming the the world is codified as a string of length n $(w = \{w_1, ..., w_n \})$, r can be defined as the ratio between the Kolmogorov complexity and n, $k(w)/n$ . Thus, the world is random or unpredictable when $r =1$ and trivially predictable when $r =0$. 
 
-To get a grasping of the workings of the model and to show that it has the right general properties, we consider what happens when some of the parameters in  equation \ref{eq:discd1d2} take extreme values. If prediction pleasure is very large compared to boredom, $p_t/k >> 1$, $d_1$ will have a very large value and $d_2$ will be very little, therefore $N(d_1) \simeq 1$ and $N(d_2) \to 0$. In this situation, the overall experience will be positive. On the contrary, when $p_t/k \to 0$ the experience overall will be negative or dominated by boredom. 
-The rationale behind this is that if the world is very predictable  $r \to 0$, it is very likely that the agent will experience prediction pleasure or boredom depending on the own agent's bias specified by its preference to predict measured by the initial prediction pleasure $p_0$ or to get bored quantified with the constant $k$. Thus, when the world has low complexity, the organism priors are the best predictors of the its behavior. 
-
-Figures \ref{fig:sims1} and \ref{fig:sims2} display simulations for different agent-environment couplings specified by the expected rate of return $\hat{r}$. A large positive value of $\hat{r}$ denotes that it is likely that the agent will predict the world consistently. A low (negative) value of $r$, on the other hand, represents the opposite situation, namely, the agent finds its environment surprising or hard to predict. 
+Figures \ref{fig:sims1} and \ref{fig:sims2} display simulations for different agent-environment couplings specified by the expected rate of return $\hat{r}$. A large positive value of $\hat{r}$ denotes that it is likely that the agent will predict the world consistently. A low (negative) value of  $\hat{r}$, on the other hand, represents the opposite situation, namely, the agent finds its environment surprising or hard to predict. 
 For example, for two agents, $a_1$ and $a_2$ with $\hat{r_1} = \mu_1 - \frac{\sigma_1 ^2}{2}$ and $\hat{r_2} = \mu_2 - \frac{\sigma_2 ^2}{2}$ and $\hat{r_1} > \hat{r_2}$, we expect that agent $a_1$ will have larger prediction pleasure than agent $a_2$, all things being equal. If $r_1 =r_2 = 0$ we are agnostic about the predictive power of both agents in their respective environments. 
 
-Figure \ref{fig:sims1} shows a simulation of the model for a predictable environment, that is to say, the agent's sensorimotor and cognitive powers are able to effectively compress the information of the external world into meaningful patterns. We codify this situation with he parameter $\hat{r} \to 0$.
-When the agent does not show any particular predisposition of being in prediction or boredom mode $(p_0 = k)$ (figure \ref{fig:sims1} \emph{a}), prediction pleasure decays and boredom starts to rise after a sufficient amount of time has passed. If the agent has a predisposition to  get bored, e.g. $(k = 10p_0)$ (figure \ref{fig:sims1} \emph{b}), boredom rises faster and earlier than in the previous case. Finally, when the agent has a predisposition to predict as opposed to explore $( p_0 = 10k )$ (figure \ref{fig:sims1} \emph{c}), both prediction pleasure and boredom remain stable over time.
+%Dark room
+Figure \ref{fig:sims1} shows a simulation of the model for a predictable environment, that is to say, the agent's sensorimotor and cognitive powers are able to effectively compress the information of the external world into meaningful patterns. We codify this situation with he parameter $\hat{r} \to 0$. An example of this environment is a dark room, that is, the world has low informational complexity.
+In this scenario, when the agent does not have any particular predisposition to predict versus to explore $(p_0 = k)$, prediction pleasure decays and boredom starts to rise after a sufficient amount of time has passed, at the end prediction term is equal to the boredom term and the overall experience is 0. Since the world is very predictable ($\hat{r} \to 0$), at time 0, the probability of being in prediction mode is larger than the probability of being in boredom mode ($N(d_1) > N(d_2)$)and the rate of decay of prediction pleasure is stepper than the growth rate of boredom. (Figure \ref{fig:sims1} \emph{a}) %r0-u0v1-p1k1
+
+If the agent has a predisposition to get bored, e.g. is twice as much an explorer than a copier $(k = 2*p_0)$, the probability of being in prediction mode is now slightly larger than the probability of being in boredom mode (the world is predictable but the agent has a bias to get bored). The boredom component will exceed the prediction component and the overall experience will be negative at the end of the period. Thus, if the agent is an explorer in a dark room, the experience value will become negative after a short period of time $(t = 0.2)$ and therefore it will need to take action e.g. get out the room to explore, in order to escape from the pain. (Figure \ref{fig:sims1} \emph{b}), %r0-u0v1-p1k2
+
+Finally, when the agent is a copier, that is, it has a predisposition to predict as opposed to explore $(p_0 = 2*k)$, will enjoy prediction 
+
+
+
+
+(Figure \ref{fig:sims1} \emph{c}), both prediction pleasure and boredom remain stable over time. 
 
 Figure \ref{fig:sims2} shows the simulation of the model when the world is structureless or random.  We codify this situation with he parameter $\hat{r} \to 1$.  YOSOLO 
 When the agent does not have any particular predisposition of being in prediction or boredom mode $(p_0 = k)$ (figure \ref{fig:sims2} \emph{a}), prediction remains stable and so does boredom but at the end boredom will inevitably rise decreasing the subjective experience value. The rationale behind this is that even though the agent is predicting the world and having prediction pleasure, being consistently successful at predicting the world has the side effect of getting bored reducing the overall experience value. 
