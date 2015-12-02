@@ -119,14 +119,14 @@ def black_scholes_hedonic (p0, k, final_time, v, r):
     ax.set_ylabel('$value$')   
     plt.show()
     figures_path = 'c:/workspace/github/figures'
-    base_filename = 'r0-u0v1-p1k1'
+    base_filename = 'r1-u0v1-p1k1'
     filename_suffix = 'png'
     dest_file = os.path.join(figures_path, base_filename + "." + filename_suffix)
     fig.savefig(dest_file, dpi=600, format='png', bbox_extra_artists=(lgd,), bbox_inches='tight')
 
 final_time = 1
 v= 1.0
-r = 0.0
+r = 1.0
 p0 = 1.0
 k = 1.0
 ratiopk = p0/k
