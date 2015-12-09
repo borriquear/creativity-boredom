@@ -41,7 +41,7 @@
 
 \begin{abstract}
 Here, we investigate whether systems that minimize prediction error e.g. predictive coding, can also show creativity, or on the contrary, prediction error minimization unqualifies for the design of systems that respond in creative ways to non recurrent problems. 
-We argue that there is a key ingredient that has been overlooked by researchers and needs to be incorporated to build creative artificial systems. This ingredient is boredom. We propose a mathematical model based on the Black-Scholes-Merton equation which provides mechanistic insights into the interplay between pain (boredom) and pleasure (prediction) as the key drivers of behavior.
+We argue that there is a key ingredient that has been overlooked by researchers that needs to be incorporated to understand intelligent behavior in biological and technical systems. This ingredient is boredom. We propose a mathematical model based on the Black-Scholes-Merton equation which provides mechanistic insights into the interplay between pain (boredom) and pleasure (prediction) as the key drivers of behavior.
 %http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.115.108103
 %The model offers mechanistic insights into the emergence of information integration from a stochastic process, laying the foundation for understanding the origin of cognition.
 \end{abstract}
@@ -51,41 +51,45 @@ We argue that there is a key ingredient that has been overlooked by researchers 
 %Boredom begets creativity. 
 %We can apply this fundamental model to our utility  problem. The subjective experience is here a function of the prediction error and time
 The value in building artificial systems with optimal predictive power is beyond question. Robots in real world missions, without the capacity to build accurate predictions of the state of the world are unreliable and doomed to a short existence. 
-In biological systems, the idea that organisms organize sensory data into an internal model of the outside world, goes back to the early days of experimental psychology. In Helmholtz's \emph{Handbook of Physiological Optics} published in 1867, it is argued that the brain unconsciously adjusts itself to produce a coherent experience. According to this view, our perceptions of external objects are images or better said, symbols, that do not resemble the referenced objects.  Helmoltz's theory of perception as a process of probabilistic inference, in which sensory causes need to be inferred based upon changes of body states, has become a major tenet in computational neuroscience \citep{Dayan:2002} and other fields, including cybernetics \citep{ashby_introduction_2015}, cognitive psychology \citep{neisser_cognitive_2014} and machine learning \citep{neal_view_1998}.
-A recent incarnation of this approach is the Helmholtz's machine postulated by Dayan, Hinton and Zemel \citep{dayan_helmholtz_1995}, \citep{dayan_varieties_1996}. The brain is here conceptualized as a statistical inference engine whose function is to infer the causes of sensory input. 
+In biological systems, the idea that organisms organize sensory data into an internal model of the outside world, goes back to the early days of experimental psychology. In Helmholtz's \emph{Handbook of Physiological Optics} published in 1867, it is argued that the brain unconsciously adjusts itself to produce a coherent experience. According to this view, our perceptions of external objects are images or better said, symbols, that do not resemble the referenced objects.  Helmoltz's view of perception as a process of probabilistic inference, in which sensory causes need to be inferred based upon changes of body states, has become a major tenet in a number of disciplines, including computational neuroscience \citep{Dayan:2002}, cybernetics \citep{ashby_introduction_2015}, cognitive psychology \citep{neisser_cognitive_2014} and machine learning \citep{neal_view_1998}.
+A recent incarnation of this theory of perception is the Helmholtz's machine postulated by Dayan, Hinton and Zemel \citep{dayan_helmholtz_1995}, \citep{dayan_varieties_1996}. The brain is here conceptualized as a statistical inference engine whose function is to infer the causes of sensory input. 
 Under this scheme, the workings of the brain encode Bayesian principles. Due in part to the ever increasing computational power of computers, Bayesian approaches alike to the Helmholtz's machine have become the workhorse for studying how the nervous system operates in situations of uncertainty \citep{rao_predictive_1999}, \citep{knill_bayesian_2004}, \citep{friston_history_2012}. 
-%
-The main rationale is that the nervous system maintains internal probabilistic models informed by sensory information. The models are continuously updated in the light of their performance in predicting the upcoming suite of cues.
+
+%The main rationale is that the nervous system maintains internal probabilistic models informed by sensory information. The models are continuously updated in the light of their performance in predicting the upcoming suite of cues.
 %In essence, the Bayesian brain is a device trained to do error correction.
 % or as Ashby put it "The whole function of the brain is summed up in: error correction." \citep{clark_whatever_2013}
-
-Predictive coding is a form of differential coding where the encoded signal is the difference between the actual signal and its prediction. This technique exploits the fact that under stationary and ergodic assumptions \footnote{A signal is stationary when its defining probabilities are fixed in time. A signal is ergodic when can be constructed as a generalization of the law of large numbers (long term averages can be closely approximated by averages across the probability space)}, the value of one data point e.g., a pixel, regularly predicts the value of its nearest neighbors. Accordingly, the variance of the difference signal can be much smaller than that of the original signal, making differential coding a very efficient way to compress information \citep{shi_image_1999}.
 %with differences marking important features such as the boundaries between objects
 %Elaborations of this same idea abound under different nomenclature and uses. For example, in digital signal processing, current signal values are estimated with Kalman Filters, a recursive algorithm that yield estimates  of the current state variables, and update those estimates  without assuming that the estimation errors are Gaussian \citep{kalman_new_1960}. 
 
-In a general sense, predictive coding is a Bayesian approach to brain function in which the brain is conceived as a device trained to do error correction. It aims at reducing redundancy for signal transmission efficiency and it is been proposed as a unifying mathematical framework for understanding information processing in the nervous system \citep{Friston:2010}, \citep{huang_predictive_2011}. Specifically, it has been used to model spatial redundancy in the visual system \citep{srinivasan_predictive_1982}, temporal redundancy in the auditory system \citep{baldeweg_repetition_2006} and the mirror neuron system \citep{kilner_predictive_2007}. Interestingly, this approach extends Barlow's redundancy reduction hypothesis, a theoretical model for sensory coding in the brain \citep{Barlow:1972}. It ought to be noted that Barlow himself has pointed out that the initial emphasis in the efficient coding theory in compressive coding %\footnote{Neurons in the visual (or auditory) system should be optimized for coding images (or sounds representative of those found in nature} %ojo literal
-needs to be amended by thinking of neural representations not as efficient encoding of stimuli but as estimates of the probable truth of hypotheses about the environment \citep{barlow_redundancy_2001}. 
+The main rationale is that the nervous system maintains internal probabilistic models which are continuously updated in the light of their performance in predicting the upcoming suite of cues. Predictive coding is a form of differential coding where the signal of interest is the difference between the actual signal and its prediction. This technique exploits the fact that under stationary and ergodic assumptions \footnote{A signal is stationary when its defining probabilities are fixed in time. A signal is ergodic when can be constructed as a generalization of the law of large numbers (long term averages can be closely approximated by averages across the probability space)}, the value of one data point e.g., a pixel, regularly predicts the value of its nearest neighbors. Accordingly, the variance of the difference signal is reduced compared to the original signal, making differential coding an efficient way to compress information \citep{shi_image_1999}.
+In a general sense, predictive coding is a Bayesian approach to brain function in which the brain is conceived as a device trained to do error correction. Predictive coding aims at reducing redundancy for signal transmission efficiency and it is been proposed as a unifying mathematical framework for understanding information processing in the nervous system \citep{Friston:2010}, \citep{huang_predictive_2011}. Specifically, it has been used to model spatial redundancy in the visual system \citep{srinivasan_predictive_1982}, temporal redundancy in the auditory system \citep{baldeweg_repetition_2006} and the mirror neuron system \citep{kilner_predictive_2007}. 
 
-The free energy principle is a theoretical formulation that states that biological systems behave always under the imperative of minimizing surprise and predictive coding is "neuronally plausible implementation scheme" of free energy minimization \citep{schwartenbeck_exploration_2013}. In a series of paper spanning over one decade, Friston and collaborators have extended and integrated Helmholtz’s ideas about perception with modern-day statistical theories, namely, Bayesian filtering \citep{friston_theory_2005}, Maximum entropy principle \citep{Jaynes:2003} and variational free energy \citep{Hinton-Camp:1993}, in order to propose a free energy principle for biological systems as a unified account of brain function and behavior.
-Crucially, the free energy principle is a normative theory for action and perception \citep{schwartenbeck_exploration_2013}, providing an objective function that would explain and predict agents' behavior. 
+%Interestingly, this approach extends Barlow's redundancy reduction hypothesis, a theoretical model for sensory coding in the brain \citep{Barlow:1972}. It ought to be noted that Barlow himself has pointed out that the initial emphasis in the efficient coding theory in compressive coding needs to be amended by thinking of neural representations not as efficient encoding of stimuli but as estimates of the probable truth of hypotheses about the environment \citep{barlow_redundancy_2001}. 
+%\footnote{Neurons in the visual (or auditory) system should be optimized for coding images (or sounds representative of those found in nature} %ojo literal
+%Crucially, the free energy principle is a normative theory for action and perception \citep{schwartenbeck_exploration_2013}, providing an objective function that would explain and predict agents' behavior. 
 
-The actual relevance and soundness of the free energy principle to explain decision making in organisms is being contested. Critics argue that if biological systems behave in the way that free energy minimization prescribes -minimizing surprises over the states visited- they would have a bland and uneventful existence, because organisms will inevitably seek the most predictable habitat, for example, a corner in a dark room, and they will stay there ad infinitum. This is being called the "dark-room problem" \citep{friston_free-energy_2012}. The imperative to minimize surprise seems to be at odds with easily recognizable features of organisms such as exploration or creativity.
+Predictive coding is "neuronally plausible implementation scheme" of free energy minimization principle \citep{schwartenbeck_exploration_2013}, a theoretical formulation that in essence states that biological systems always behave under the imperative of minimizing surprise. In a series of articles spanning over one decade, Friston and collaborators have proposed a free energy principle as an unified account of brain function and behavior. The free energy minimization principle buttresses Helmholtz’s theory perception using modern-day statistical theories, namely, Bayesian filtering \citep{friston_theory_2005}, Maximum entropy principle \citep{Jaynes:2003} and variational free energy \citep{Hinton-Camp:1993},  
 
-Friston's way out of the "dark-room problem" is as follows, probabilities are always conditional to the system's prior information, thus, a system equipped with a generative model (priors) that dislikes dark-rooms rather than being stuck in a corner minimizing its prediction error, will walk away in order to sample the external world according to its own priors. Thus, surprise or surprisal  \footnote{See the Appendix for the technical definition of surprisal and implications within the free energy principle and the predictive coding framework.}over states $(S)$ is always conditional to a given specific generative model $(m)$, $H(S|m)$, which is different to the marginal surprise over the states, $H(S)$.
-But where the priors come from and how they are shaped by the environment is never said. This is indeed the crux of the matter in Bayesian statistics. The translation of subjective prior beliefs into mathematically formulated prior distributions is an ill-defined problem \citep{Gomez-ramirez_limitations_2013}. 
+%they would have a bland and uneventful existence, because organisms
+The actual relevance and soundness of the free energy principle to explain decision making in organisms is being contested. Critics argue that if biological systems behave in the way that free energy minimization prescribes -minimizing surprises over the states visited- they will inevitably seek the most predictable habitat, for example, a corner in a dark room, and they will stay there ad infinitum. This putative tendency of organisms to pursue a bland and uneventful existence is 
+being called the "dark room problem" \citep{friston_free-energy_2012}. 
+This mental experiment would show, that the imperative of organisms to minimize surprise put forward by the free energy minimization principle is at odds with easily recognizable features of organisms such as exploration or creativity.
+
+Friston's way out of the "dark-room problem" is as follows, probabilities are always conditional to the system's prior information, thus, a system equipped with a generative model (priors) that dislikes dark rooms rather than being stuck in a corner minimizing its prediction error, will walk away in order to sample the external world according to its own priors. Crucially, surprise or surprisal  \footnote{See the Appendix for the technical definition of surprisal and implications within the free energy principle and the predictive coding framework.}over states $(S)$ is always conditional to a given specific generative model $(m)$. The surprise over S is always conditional to the model m, $H(S|m)$, which is obviously different to the marginal surprise over the states, $H(S)$. Therefore different systems acting in an identical environment might disagree in what is surprising and what is not according to their priors.
+But where the priors come from and how they are shaped by the environment is never said in the predictive coding framework. This is indeed the crux of the matter in Bayesian statistics. The translation of subjective prior beliefs into mathematically formulated prior distributions is an ill-defined problem \citep{Gomez-ramirez_limitations_2013}. 
 
 And yet, the minimization of surprise is a sufficient condition for keeping the system within an admissible set of states. 
-A bacterium, a cockroach, a bird and a human being all have in common that in order to persevere in their actual forms, they must limit their possible physiological states, that is, organisms constrain their phenotype in order to resist disorder. 
+A bacterium, a cockroach, a bird and a human being all have in common that in order to persevere in their actual forms, they must limit their physiological states, that is, organisms constrain their phenotype in order to resist disorder. 
 Homeostasis is the control mechanism in charge of keeping the organism's internal conditions stable and within bounds. Survival depends on the organism's capacity to maintain its physiology within an optimal homeostatic range \citep{damasio_nature_2013}. 
 %Friston goes even further to claim that \emph{the physiology of biological systems can be reduced almost entirely to their homeostasis \citep{friston_free-energy_2010}}. 
 
 Here is the conundrum that this paper addresses. On the one hand, free energy minimization is conducive to achieving the homeostatic balance necessary for the organism's survival and well-being and on the other hand, surprise minimization can not possibly be the unique modus-operandi of biological systems. Organisms that minimize prediction error would never engage in exploration, risk-taking or creativity, for the simple reason that these behaviors might increase the prediction error. 
-In consequence, surprise or free energy can not be used as the unique necessary factor to explain choices under uncertainty conditions. We argue that the actual quantity that is maximized is the difference between prediction error and boredom. 
+In consequence, surprise or free energy can not be used as the unique necessary factor to explain choices under uncertainty conditions. 
 
+Here we argue that the actual quantity that is maximized is the difference between prediction error and boredom. 
 The crucial intuition behind our model is strikingly simple.
 A system that minimizes prediction error is not only attentive to homeostasis and the vital maintenance functions of the body, but it also maximizes pleasure. For example, the reward effect in the appreciation of aesthetic work might come from the transition from a state of uncertainty to a state of increased predictability \citep{van_de_cruys_putting_2011}.
 However, this is until the signal error becomes stationary, or in the art work example, the art work has not anymore the potential of surprising us, in that case boredom kicks in, reducing the overall value of the subjective experience.
-
 Boredom is an aversive (negative valence) emotion. Thus, boredom creates the conditions to start exploring new hypothesis by sampling the environment in new and creative ways, or put in other words, boredom begets creativity. 
 Until very recently, the function of boredom has been considered of little of no interest for understanding human functioning. This situation is rapidly changing, 
 recent studies in human psychology shows that the experience of boredom might be accompanied by stress and increases levels of arousal to ready the person for alternatives \citep{posner_neurophysiological_2009} \citep{bench_function_2013}. 
@@ -94,22 +98,24 @@ recent studies in human psychology shows that the experience of boredom might be
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %YOSOLO anticipate and justify the mathematical model that we present next
-The rest of the paper is structured as follows. Section (\ref{se:methods})  introduces a mathematical model that extends and complement predictive coding. We argue that surprise minimization in any of its equivalent forms such as free energy minimization and marginal likelihood maximization, is not a sufficient but a necessary \emph{explanans} of biological behavior. Section \ref{se:re} presents the simulations of the model to help have an intuitive grasping of the mathematical model based on the Black-Scholes-Merton equation. This statistical model, though conceived for a very different problem (financial options pricing) allows us to elegantly model the interplay between prediction and boredom which, as it is argued here, accounts for most of organism's behavior.
-In section \ref{se:dis} we discuss the limitations of maximum likelihood methods e.g. free energy minimization, in relation with the previous results.
-An appendix with technical definitions of some of the concepts employed is included at the end of the paper.
+The rest of the paper is structured as follows. Section \ref{se:methods} introduces a mathematical model that extends and complement predictive coding. Surprise minimization in any of its equivalent forms such as free energy minimization and marginal likelihood maximization is not a sufficient but a necessary \emph{explanans} of biological behavior. Section \ref{se:re} presents the simulations of the model to help have an intuitive grasping of the mathematical model based on the Black-Scholes-Merton equation. This statistical model, though conceived for a very different problem (financial options pricing) allows us to elegantly model the interplay between prediction and boredom.
+% which, as it is argued here, accounts for most of organism's behavior.
+In section \ref{se:dis} we discuss the limitations of free energy minimization and its neuronal implementation, prediction coding, in relation with the previous results.
+%An appendix with technical definitions is provided at the end of the paper.
 
 \section{Methods}
 \label{se:methods}
 
-In this section we build a mathematical model to explain intelligent (behavior as the maximization of the subjective experience.  %biological or technical)
+In this section we build a mathematical model to explain intelligent behavior as the maximization of the subjective experience.  %biological or technical)
 The subjective experience consists on two terms with opposed valence, prediction and boredom. Prediction is a positive or hedonic state and boredom is a negative emotional state. In short, what organisms do is to maximize subjective experience, and in order to achieve that objective they tend to minimize surprise as predictive coding correctly claims, while at the same time diminishing boredom, a negative emotion that arises during monotonous tasks or in environments with low entropy. The rationale behind this is that organisms maximize subjective experience by making prediction pleasure as large as possible while keeping boredom to tolerable levels \footnote{Note that prediction pleasure is the inverse of prediction error, therefore maximize prediction pleasure is the same as minimize prediction error.}.
+In this view, organisms do not exclusively operate in prediction mode, sooner or later, depending on the intrinsic agent's motivations and how they match with the environment, the marginal utility of prediction will decrease and the organism will switch to exploration mode, that is, the organism will become less concerned with predicting its current state, and will be prone to visit surprising states that overall increase its well being as encoded by the experience value. 
 
+%We postulate that value-based decision do not only maximize prediction, agents rather maximize the difference between prediction and boredom.
 %The model thus, extends the prediction error minimization by incorporating the boredom component in the utility function. 
 
 We start by defining the utility function that agents maximize. 
-A utility function is a mathematical description of subjective value that is constructed from choices under incomplete information conditions. We postulate that value-based decision do not only maximize prediction, rather agents maximize the difference between prediction and boredom. In this view, organisms do not exclusively operate in prediction mode, sooner or later, depending on the intrinsic agent's motivations and how they match with the environment, the marginal utility of prediction will decrease and the organism will switch to exploration mode, that is, the organism will become less concerned with predicting its current state, and  will be prone to visit surprising states that overall increase its well being as encoded by the experience value. 
-
-The utility function is defined as follows,
+\footnote{A utility function is a mathematical description of subjective value that is constructed from choices under incomplete information conditions.} 
+%The utility function is defined as follows,
 \begin{equation}
     v =  p - b
 \label{eq:vpb}
@@ -119,17 +125,16 @@ It seems clear from equation \ref{eq:vpb} that the larger the prediction pleasur
 When the prediction pleasure is greater than the boredom the subjective experience is overall positive or pleasant, on the contrary, when the boredom exceeds the prediction pleasure, experience is overall negative or painful. 
 %The quantity to maximize is thus, the subjective value $v$ and it does so by maximizing its predictive power while keeping boredom as low as possible. Accordingly, the more successful a system is in predicting its current state, the more pleasure it achieves under the constrain that the system does not become too successful in predicting upcoming events so that it gets bored. 
 
-The instantaneous subjective experience $v_t$ is calculated as the difference between the instantaneous pleasure $p_t$ and the negative pain $b_t$, which in our model is assumed to be constant or $b_t=k$. The boredom constant $k$ represents the agent's disposition to get bored and is thus, an inherent property of the system or \emph{causa sui}. Prediction pleasure, on the other hand, is directly calculated from the prediction error.
-Prediction pleasure at time $t, p_t$, is the reciprocal of prediction error at time $t, \epsilon_t$, that is, $p_t = \frac{1}{\epsilon_t}$.
+
+We need now to be more precise in the formulation of the terms included in equation \ref{eq:vpb}. 
+Reinforcement learning is the problem faced by an agent that must learn to predict the value of future events through the computation of the difference between one’s rational expectations of future rewards and any information that leads to a revision of expectations \citep{glimcher_understanding_2011}. Prediction error is a function of prediction error and time, specifically prediction pleasure is the inverse of prediction error. 
+%The larger is the divergence between expectations and the actual realization, the less pleasing the experience is, and vice-versa, the better agents predict (the distance between expectation and realization is small) the more pleasing the experience is.
+Thus, the instantaneous subjective experience $v_t$ is calculated as the difference between the instantaneous pleasure $p_t$ and the negative pain $b_t$, which in our model is assumed to be constant or $b_t=k$. The boredom constant $k$ represents the agent's disposition to get bored and is therefore an inherent property of the system or \emph{causa sui}. Prediction pleasure, on the other hand, is directly calculated from the prediction error. Prediction pleasure at time $t, p_t$, is the reciprocal of prediction error at time $t, \epsilon_t$, that is, $p_t = \frac{1}{\epsilon_t}$.
 Accordingly, the value of the experience at time $t$ is the difference between the prediction pleasure at $t$ minus the boredom component, that is,
 \begin{equation}
     v_t = \frac{1}{\epsilon_t} - k = p_t - k
 \label{eq:vpbt}
 \end{equation}
-
-We need now to be more precise in the formulation of the terms included in equation \ref{eq:vpbt}. 
-
-Reinforcement learning is the problem faced by an agent that must learn to predict the value of future events through the computation of the difference between one’s rational expectations of future rewards and any information that leads to a revision of expectations \citep{glimcher_understanding_2011}. Prediction error is a function of prediction error and time, specifically prediction pleasure is the inverse of prediction error. The larger is the divergence between expectations and the actual realization, the less pleasing the experience is, and vice-versa, the better agents predict (the distance between expectation and realization is small) the more pleasing the experience is.
 
 A reasonable assumption is that the prediction error describes a generalized Wiener process \citep{ross_stochastic_1996}. A Wiener process is a particular type of Markov process which is a stochastic process where only the current value of a random variable is relevant for future prediction.  
 Thus, we define the prediction error $\epsilon$ as a generalized Wiener process 
@@ -150,22 +155,13 @@ If we additionally assume that the variability of the "return" of prediction err
 \end{split}
 \label{eq:wiener}
 \end{equation}
-where $\mu$ is the expected rate of return, i.e. the percentage of gain/loss in prediction error for one time period and $\sigma$ is the volatility of prediction error.
-The variable $\mu$ can be seen as the expected percentage gain/loss of prediction error. For example, $\mu = 0.1$ means that prediction error is expected to increment by a $10\%$. The variable $\sigma$ is the volatility of the prediction error. Following the assumption that the prediction error follows a Wiener process,
+where $\mu$ is the expected rate of return, i.e. the percentage of change in the prediction error for one time period and $\sigma$ is the volatility of prediction error. For example, $\mu = 0.1$ means that prediction error is expected to increment by a $10\%$. Following the assumption that the prediction error follows a Wiener process,
 $\mu = 0$ ans $\sigma= 1.0$.
 %It is expected that $\sigma$ in a world with high entropy will be larger than in a world with low entropy, ceteris paribus. For example, a surprising world with a large number of objects and events that are hard to predict will yield a large $\sigma$ while a predictable environment. 
 
 %Arguably, an empty room will yield a low value of $\sigma$. 
 
-Remind that in equation \ref{eq:vpb} we defined the subjective experience $v$ as the difference between prediction pleasure $p$ and boredom $b$. We have so far defined the prediction error $\epsilon$. Prediction pleasure is a function the prediction error and time. Formally, 
-\begin{equation}
-\begin{split}
-& p = \frac{1}{\epsilon} \\
-\end{split}
-\label{eq:pinve}
-\end{equation}
-
-According to equation \ref{eq:pinve}, the value of the prediction pleasure $p$ is a function of the underlying stochastic variable $\epsilon$. The It\^{o} lemma allows us to characterize a function of a variable that follows a It\^{o} process \citep{ito_stochastic_1951}. Since the prediction error $\epsilon$ is a generalized Wiener process, it can be modeled as a It\^{o} process, 
+Remind that in equation \ref{eq:vpb} we defined the subjective experience $v$ as the difference between prediction pleasure $p$ and boredom $b$. The prediction pleasure $p$ is a function of the underlying stochastic variable $\epsilon$ or prediction error. The It\^{o} lemma allows us to characterize a function of a variable that follows a It\^{o} process \citep{ito_stochastic_1951}. Since the prediction error $\epsilon$ is a generalized Wiener process, it can be modeled as a It\^{o} process, 
 \begin{equation*}
 \begin{split}
    \epsilon = a(\epsilon,t)dt + b(\epsilon,t)dz
@@ -179,31 +175,38 @@ where $dz$ is a Wiener process and the drift $a$ and the variance rate $b$, rath
 \end{split}
 \label{eq:itopr2}
 \end{equation}
-Now, substituting $f$ for $p$ and $x$ for $\epsilon$ in equation \ref{eq:itopr2} gives the prediction pleasure behavior $p$ derived from the underlying prediction error $\epsilon$. Both $\epsilon$ and $p$ follows geometric Brownian motion.
-Thus, the It\^{o} process followed by the prediction pleasure $p$ is 
+Now, substituting $f$ for $p$ and $x$ for $\epsilon$ in equation \ref{eq:itopr2} gives the prediction pleasure behavior $p$ derived from the underlying prediction error $\epsilon$. Since both $\epsilon$ and $p$ follows geometric Brownian motion, the prediction pleasure $p$ corresponds to the It\^{o} process  
 \begin{equation}
 \begin{split}
  & dp =  \big(- \frac{\mu}{\epsilon^2} + \frac{\sigma^2}{\epsilon}\big)dt - \frac{\sigma}{\epsilon}dz \\
 \end{split}
 \label{eq:itopr3}
 \end{equation}
-Equation \ref{eq:itopr3} indicates that $p = \frac{1}{\epsilon}$ is a It\^{o} process \footnote{Note that equation \ref{eq:itopr3} is not a generalized Wiener process because the drift rate and the variance rate are not constant.} with drift rate $-\frac{\mu}{\epsilon^2} + \frac{\sigma^2}{\epsilon}$ and standard deviation rate $-\frac{\sigma}{\epsilon}$.
+Note that equation \ref{eq:itopr3} is not a generalized Wiener process because the drift rate and the variance rate are not constant.
+%Equation \ref{eq:itopr3} indicates that equation \ref{eq:pinve} is a It\^{o} process \footnote{} with drift rate $-\frac{\mu}{\epsilon^2} + \frac{\sigma^2}{\epsilon}$ and standard deviation rate $-\frac{\sigma}{\epsilon}$.
+Using the It\^{o} lemma, the process followed by $\rho = ln \epsilon$ when $\epsilon$ follows the process in equation \ref{eq:itopr} is
+\begin{equation}
+\begin{split}
+&  d \rho =  \bigg( \mu - \frac{\sigma^2}{2} \bigg)dt + \sigma dz \\
+\end{split}
+\label{eq:itoprex}
+\end{equation}
 
-The prediction error $\epsilon$ is lognormally distributed, 
-\begin{equation*}
-\ln \epsilon \sim N \bigg((\mu -\frac{\sigma^2}{2})T, \sigma \sqrt{T}\bigg)
-\end{equation*}
-and the inverse of the prediction error or the prediction pleasure is also lognormally distributed, see the Appendix for the demonstration. We use Monte-Carlo simulation to sampling random outcomes of the It\^{o} process.
-\begin{equation*}
-\ln p \sim N\bigg( (\frac{\sigma^2}{2} - \mu)T, \sigma \sqrt{T} \bigg)
-\end{equation*}
+Since $\mu$ and $\sigma$ are constant, $\rho = \ln \epsilon$ follows a general wiener process with drift rate $\mu - \frac{\sigma^2}{2}$ and variance rate $\sigma^2$. The change in $ \ln \epsilon$ between 0 and the final time T is normally distributed, and therefore the prediction error $\epsilon$ is lognormally distributed. The inverse of the prediction error or the prediction pleasure is also lognormally distributed, see the Appendix for the demonstration. We use Monte-Carlo simulation to sampling random outcomes of the It\^{o} process.
+\begin{equation}
+\begin{split}
+& \ln \epsilon \sim N \bigg((\mu -\frac{\sigma^2}{2})T, \sigma \sqrt{T}\bigg) \\
+& \ln p \sim N\bigg( (\frac{\sigma^2}{2} - \mu)T, \sigma \sqrt{T} \bigg)
+\end{split}
+\label{eq:lgnp}
+\end{equation}
 
 %yosolo montecarlo
 %A Monte Carlo simulation of a stochastic process is a procedure for sampling random outcomes for the process. We will use it as a way of developing some understanding of the nature of the stock price process in equation (14.6).
 
 %yosolo rate of discount
 %The quantity that systems maximized is defined at any give instant $t$ in the %equation \ref{eq:vpbt}}. 
-Consider now that we are interested in studying the behavior of a system with a boredom constant $k$ over a period of time $T$. The expected experience value at time $t$ $(v_t)$ is its expected value at time $T$ $(v_T)$ discounted at the rate $r$. This idea relies upon the method of valuation called discounted cash flow which is used to value assets. The money in the future does not value the same than now, this is because one needs to discount the price at the rate at which the money grows. For example, a $70\$$ asset with an annual growth rate of $r=10\%$ and 5 years maturity is value today $54.6\$$. This same concept borrowed from mathematical finance is still valid for our purpose.
+Consider now that we are interested in studying the behavior of a system with a boredom constant $k$ over a time period $T$. The expected experience value at time $t$ $(v_t)$ is its expected value at time $T$ $(v_T)$ discounted at the rate $r$. This idea relies upon the method of valuation called discounted cash flow which is used to value assets. The money in the future does not value the same than now and  this is because one needs to discount the price at the rate at which the money grows. For example, a $100\$$ asset with an annual growth rate of $r=10\%$ and 5 years maturity is value today $60.65\$$ \footnote{$p_t = \frac{p_T}{e^{r(T-t)}}$}. This same concept borrowed from mathematical finance is still valid for our purpose.
 %http://www.investopedia.com/terms/d/dcf.asp 
 
 The discount factor $r$ can be here understood as a prediction rate, which in essence, represents how much structure there is in the outside world. For example, in an external world in which information is entirely redundant, $r$ will be zero.
@@ -271,15 +274,15 @@ Figures \ref{fig:sims1} and \ref{fig:sims2} display simulations for different ag
 Figure \ref{fig:sims1} shows a simulation of the model for a very predictable environment, that is to say, the agent's sensorimotor and cognitive powers are able to effectively compress the information of the external world into a few meaningful patterns. We codify this situation with he parameter $\hat{r} \to 0$. An example of this environment is a dark room, the world here has low informational complexity.
 In this scenario, when the agent does not have any particular predisposition to predict versus to explore $(p_0 = k)$, prediction pleasure decays linearly and boredom remains stationary. Since the world is trivially predictable ($\hat{r} \to 0$), the boredom term which can be seen as a signal to explore remains constant, because there is no structure to be discover in the world and therefore it does not make sense the explore it (Figure \ref{fig:sims1} \emph{a}). %r0-u0v1-p1k1
 %nd1 = nd2 = 0.5
-If the agent is an explorer, that is, has a predisposition to get bored $(k = 2*p_0)$, the probability of being in boredom mode is initially larger than the probability of being in prediction mode. The environment is trivially predictable and the agent has a bias to get bored, thus boredom will grow and prediction will decay, resulting in a negative experience value at the end of the period \ref{fig:sims1} \emph{c}). %r0-u0v1-p1k2
-Finally, when the agent is a copier, that is, it has a predisposition to predict as opposed to explore $(p_0 = 2*k)$, due to this bias, the probability of being in prediction mode is initially larger than being in boredom mode $(N(d_1) > N(d_2))$ and will continue growing to reach a maximum at the end of the period  $(N(d_1) =1,  N(d_2) =0)$. The bias for predicting governs the overall experience which is always positive. (Figure \ref{fig:sims1} \emph{b}) %r0-u0v1-p2k1
+If the agent is an explorer, that is, has a predisposition to get bored $(k = 2p_0)$, the probability of being in boredom mode is initially larger than the probability of being in prediction mode. The environment is trivially predictable and the agent has a bias to get bored, thus boredom will grow and prediction will decay, resulting in a negative experience value at the end of the period \ref{fig:sims1} \emph{c}). %r0-u0v1-p1k2
+Finally, when the agent is a copier, that is, it has a predisposition to predict as opposed to explore $(p_0 = 2k)$, due to this bias, the probability of being in prediction mode is initially larger than being in boredom mode $(N(d_1) > N(d_2))$ and will continue growing to reach a maximum at the end of the period  $(N(d_1) =1,  N(d_2) =0)$. The bias for predicting governs the overall experience which is always positive. (Figure \ref{fig:sims1} \emph{b}) %r0-u0v1-p2k1
 
 %rich room
 %%%%%%%%% r = 1
 Figure \ref{fig:sims2} shows simulations of the model when the world is rich on structure, that is, there are patterns to be discovered and possibly, surprising events using the definition of surprise given in the Appendix. We codify this situation with he parameter $\hat{r} = 1$. Thus, in this situation the world is rich in structure and the agent's sensorimotor and cognitive powers is potentially  able to compress the information of the external world into meaningful patterns. 
-When the agent does not have any particular predisposition of being in prediction or boredom mode $(p_0/ k =1)$, the probability of being in prediction mode is equal to the probability of being in boredom mode $(N(d_1) = N(d_2))$. The experience value decreases as the boredom rises and the prediction pleasure decays. The rationale behind this is that even though the agent is predicting the world and having prediction pleasure, being consistently successful at predicting the world has the side effect of getting bored reducing the overall experience value (Figure \ref{fig:sims2} \emph{a}). %r1-u0v1-p1k1
-If the agent has a predisposition to get bored $(k = 2*p_0)$, initially, since the world is rich in structure, the agent will be in prediction mode, but as the time goes on, the boredom component will exceed the prediction component and the overall experience will be negative. Thus, if the agent is an explorer in a world rich in stimuli, the experience value will become negative after at time $(t = 0.4)$ and therefore it will need to take action e.g. get out the room to explore, in order to escape from the pain. The rationale here is that since the world has complexity (patterns to be identified by the agent), boredom will act as a signal to explore the world rather than keep the agent predicting alone which has decreasing marginal utility (Figure \ref{fig:sims2} \emph{b}). %r1-u0v1-p1k2
-If the agent is a copier, $(p_0 = 2*k)$, in a complex environment, the agent is a copier in a world that suits its own personality. The subjective experience, though slowly decreasing, is always positive and importantly it will not get bored. The rationale is that the agent will content himself copying the rich structure of the world (Figure \ref{fig:sims1} \emph{c}). %r1-u0v1-p2k1 
+When the agent does not have any particular predisposition of being in prediction or boredom mode $(p_0/k =1)$, the probability of being in prediction mode is equal to the probability of being in boredom mode $(N(d_1) = N(d_2))$. The experience value decreases as the boredom rises and the prediction pleasure decays. The rationale behind this is that even though the agent is predicting the world and having prediction pleasure, being consistently successful at predicting the world has the side effect of getting bored reducing the overall experience value (Figure \ref{fig:sims2} \emph{a}). %r1-u0v1-p1k1
+If the agent has a predisposition to get bored $(k = 2p_0)$, initially, since the world is rich in structure, the agent will be in prediction mode, but as the time goes on, the boredom component will exceed the prediction component and the overall experience will be negative. Thus, if the agent is an explorer in a world rich in stimuli, the experience value will become negative after at time $(t = 0.4)$ and therefore it will need to take action e.g. get out the room to explore, in order to escape from the pain. The rationale here is that since the world has complexity (patterns to be identified by the agent), boredom will act as a signal to explore the world rather than keep the agent predicting alone which has decreasing marginal utility (Figure \ref{fig:sims2} \emph{b}). %r1-u0v1-p1k2
+If the agent is a copier, $(p_0 = 2k)$, in a complex environment, the agent is a copier in a world that suits its own personality. The subjective experience, though slowly decreasing, is always positive and importantly it will not get bored. The rationale is that the agent will content himself copying the rich structure of the world (Figure \ref{fig:sims1} \emph{c}). %r1-u0v1-p2k1 
 
 %%%%% resumen charts
 In both figures for either low and high world complexity, when the agent has a bias to get bored (explorer agent) the boredom component raises reducing the overall experience value (figures \ref{fig:sims1} and \ref{fig:sims2} \emph{b}). When the agent has a predisposition to predict (copier agent), the subjective experience increases in the dark room like scenario because the agent's priors matches with the world easiness to predict (\ref{fig:sims1} \emph{c}), and when the informational complexity of the world is high, the overall experience will decrease but will be positive, because the agent has a bias to predict and there is structure to be predicted in the world but also surprises and novel patterns (\ref{fig:sims2} \emph{c}). When the agent has no priors (figure \emph{a} in \ref{fig:sims1} and \ref{fig:sims2}), is neither a copier nor an explorer, the subjective experience will decrease. In the case of a simple world (figure \ref{fig:sims1}), this is because because the marginal utility of prediction pleasure must decrease and in the complex world (\ref{fig:sims2}), because boredom will increase to signal that there may be more in the world that can be predicted.
@@ -355,7 +358,7 @@ The importance of boredom needs still to be recognized by researchers. Boredom s
 
 
 Organisms that only minimize prediction error would never engage in exploration, risk-taking or creativity, for the simple reason that these behaviors might increase the prediction error. 
-In consequence, surprise or free energy can not be used as the unique necessary factor to explain choices under uncertainty conditions. The mathematical model here defined conveys the idea that boredom begets creativity. The quantity that is maximized is the difference between prediction error and boredom, and it is the through the interplay pleasure and pain, how homeostatic balances and their corrective responses can be acquired and exploited.
+In consequence, the minimization of surprise falls short to be the unique necessary factor to explain choices under uncertainty conditions. The mathematical model here defined conveys the idea that boredom begets creativity. The quantity that is maximized is the difference between prediction error and boredom, and it is  through the interplay pleasure and pain, how homeostatic balances and their corrective responses can be acquired and exploited.
 
 
 %\bibliography{\myreferences}
