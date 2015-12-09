@@ -1,0 +1,41 @@
+function totaldfc = dcm(cmoney,nyears, irate)
+%FUNCTION_NAME - Functionthat calculate the discount cash flow
+%
+% Syntax:  output1 = function_name(input1,input2,input3)
+%
+% Inputs:
+%    cmoney - current money value
+%    nyears - number of years
+%    irate - interest rate annualized
+%
+% Outputs:
+%    output1 - Cash flow value for in
+%    
+%
+% Example: 
+%    http://www.investopedia.com/terms/d/dcf.asp
+%    Line 2 of example
+%    Line 3 of example
+%
+% Other m-files required: none
+% Subfunctions: none
+% MAT-files required: none
+% Author: Jaime Gomez Ramirez
+% December 2015; 
+
+%------------- BEGIN CODE --------------
+
+totaldfc = 0
+for i = 1:nyears
+    x(n) = 2 * x(n - 1);
+    yeardfc
+end
+totaldfc = yeardfc + totaldfc
+
+
+%------------- END OF CODE --------------
+%Please send suggestions for improvement of the above template header 
+%to Denis Gilbert at this email address: gilbertd@dfo-mpo.gc.ca.
+%Your contribution towards improving this template will be acknowledged in
+%the "Changes" section of the TEMPLATE_HEADER web page on the Matlab
+%Central File Exchange
